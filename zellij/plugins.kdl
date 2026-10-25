@@ -1,0 +1,6 @@
+plugins {
+    zjstatus location="file:~/.config/zellij/plugins/zjstatus.wasm"
+    room location="file:~/.config/zellij/plugins/room.wasm"
+    zjframes location="file:~/.config/zellij/plugins/zjframes.wasm"
+    forgot location="file:/home/kioto/.config/zellij/plugins/zellij_forgot.wasm"
+}

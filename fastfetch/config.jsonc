@@ -1,0 +1,135 @@
+//  kioto@batlomiej — arch + hyprland // bleach style v4
+// Wymaga Nerd Font. Ikony zapisane jako \uXXXX (odporne na kopiowanie).
+{
+  /////===== LOGO =====/////
+  "logo": {
+    "type": "auto",
+    "source": "~/.config/fastfetch/images/SouthKioto.jpeg",
+    "height": 15,
+    "padding": {
+      "top": 1,
+      "left": 2,
+      "right": 2
+    }
+  },
+  "display": {
+    "separator": " ",
+    "key": {
+      "width": 14
+    },
+    "color": {
+      "keys": "38;5;208",
+      "title": "38;5;208",
+      "output": "38;5;255"
+    }
+  },
+  /////===== MODULES =====/////
+  "modules": [
+    /////===== SEIREITEI (system, pomarańcz) =====/////
+    {
+      "type": "custom",
+      "key": "╔═ SEIREITEI ═════",
+      "keyColor": "38;5;208"
+    },
+    {
+      "type": "title",
+      "key": "║ \uf007 User",
+      "format": "{host-name}",
+      "keyColor": "38;5;208"
+    },
+    {
+      "type": "custom",
+      "key": "╠══◈═══════◈══",
+      "keyColor": "38;5;208"
+    },
+    {
+      "type": "os",
+      "key": "║ \uf17c OS",
+      "keyColor": "38;5;208"
+    },
+    {
+      "type": "kernel",
+      "key": "║ \uf013 Kernel",
+      "keyColor": "38;5;208"
+    },
+    {
+      "type": "wm",
+      "key": "║ \uf2d0 WM",
+      "keyColor": "38;5;208"
+    },
+    {
+      "type": "packages",
+      "key": "║ \uf487 Packages",
+      "keyColor": "38;5;208",
+      "disabled": [
+        "apk"
+      ],
+      "combined": false
+    },
+    {
+      "type": "custom",
+      "key": "╚═════════════════",
+      "keyColor": "38;5;208"
+    },
+    /////===== KATANA (separator) =====/////
+    {
+      "type": "custom",
+      "key": "══╪━━━━━━━━━━━▶",
+      "keyColor": "38;5;255"
+    },
+    /////===== HUECO MUNDO (hardware, czerwień) =====/////
+    {
+      "type": "custom",
+      "key": "▛▀ HUECO MUNDO ▀▀▀",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "memory",
+      "key": "▌ \uf2db Memory",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "disk",
+      "key": "▌ \uf0a0 Disk",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "swap",
+      "key": "▌ \uf0ec Swap",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "cpu",
+      "key": "▌ \uf2db CPU",
+      "format": "{name} ({cores-logical})",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "gpu",
+      "key": "▌ \uf108 GPU",
+      "format": "{vendor} {name} ({type})",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "host",
+      "key": "▌ \uf109 Chassis",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "battery",
+      "key": "▌ \uf240 Battery",
+      "keyColor": "38;5;196"
+    },
+    {
+      "type": "custom",
+      "key": "▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",
+      "keyColor": "38;5;196"
+    },
+    /////===== PASEK KOLORÓW =====/////
+    {
+      "type": "custom",
+      "key": " ",
+      "format": "{#38;5;208}██████{#38;5;255}██████{#38;5;196}██████{#38;5;232}██████"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+[submodule "fish"]
+	path = fish
+	url = git@github.com:SouthKioto/fishSetup.git
+[submodule "ghostty"]
+	path = ghostty
+	url = git@github.com:SouthKioto/ghosttySetup.git
+[submodule "nvim"]
+	path = nvim
+	url = git@github.com:SouthKioto/NeoVimSetup.git

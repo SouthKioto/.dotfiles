@@ -1,0 +1,116 @@
+# =====================================================================
+#  Dotfiles ~/.config — tryb WHITELIST
+#  Domyślnie ignorujemy WSZYSTKO, a potem jawnie odblokowujemy tylko
+#  to, co chcemy wersjonować. Nowa aplikacja (przeglądarka, komunikator,
+#  menedżer haseł...) nigdy nie trafi do repo przypadkiem.
+#
+#  Dodanie nowego configu:
+#    !nazwa/        <- odblokuj katalog
+#    !nazwa/**      <- i jego zawartość
+# =====================================================================
+
+/*
+
+# --- meta repo -------------------------------------------------------
+!/.gitignore
+!/.gitmodules
+!/README.md
+
+# --- submoduły (osobne repo) -----------------------------------------
+!/fish
+!/ghostty
+!/nvim
+
+# --- pliki w katalogu głównym ----------------------------------------
+!/starship.toml
+!/gruvbox-rainbow.toml
+!/mimeapps.list
+!/brave-flags.conf
+!/electron-flags.conf
+!/vesktop-flags.conf
+
+# --- katalogi z konfiguracją -----------------------------------------
+!/btop/
+!/cava/
+!/fastfetch/
+!/fontconfig/
+!/gtk-3.0/
+!/gtk-4.0/
+!/hypr/
+!/kitty/
+!/matugen/
+!/qt5ct/
+!/qt6ct/
+!/rofi/
+!/starship/
+!/superfile/
+!/swaync/
+!/systemd/
+!/waybar/
+!/waypaper/
+!/wlogout/
+!/xdg-desktop-portal/
+!/zellij/
+
+# =====================================================================
+#  Wyjątki wewnątrz odblokowanych katalogów
+# =====================================================================
+
+# Raporty / dane specyficzne dla maszyny
+/hypr/raport.html
+/rofi/.current_wallpaper
+/btop/btop.log
+
+# Kopie zapasowe i pliki tymczasowe edytorów
+*.bak
+*.save
+*.old
+*.orig
+*.swp
+*.swo
+*~
+.#*
+\#*#
+
+# =====================================================================
+#  Siatka bezpieczeństwa — sekrety. Działa nawet gdy ktoś (Ty za rok)
+#  odblokuje cały katalog. Sprawdź `git check-ignore -v <plik>`.
+# =====================================================================
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.kdbx
+*.gpg
+*.asc
+id_rsa*
+id_ed25519*
+id_ecdsa*
+*secret*
+*secrets*
+*credential*
+*credentials*
+*token*
+*.token
+hosts.yml
+auth.json
+.netrc
+*.cookie
+cookies*
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+*.vscdb*
+
+# Śmieci systemowe
+.DS_Store
+Thumbs.db
+*.log
+*.pid
+*.sock
+__pycache__/
+*.pyc

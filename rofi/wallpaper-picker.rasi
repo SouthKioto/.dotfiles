@@ -1,0 +1,91 @@
+/**
+ * Wallpaper picker, kolory z Matugena
+ **/
+
+@import "colors/colors.rasi"
+
+configuration {
+    show-icons: true;
+}
+
+* {
+    font:             "JetBrainsMono Nerd Font 10";
+    background-color: transparent;
+    text-color:       @foreground;
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            900px;
+    border:           2px solid;
+    border-color:     @selected;
+    border-radius:    12px;
+    background-color: @background;
+}
+
+mainbox {
+    children:         [ inputbar, message, listview ];
+    spacing:          12px;
+    padding:          16px;
+}
+
+inputbar {
+    children:         [ prompt, entry ];
+    spacing:          8px;
+    padding:          10px 14px;
+    border-radius:    8px;
+    background-color: @background-alt;
+}
+
+prompt {
+    text-color:       @selected;
+}
+
+entry {
+    placeholder:       "Szukaj tapety...";
+    placeholder-color: @foreground;
+}
+
+message {
+    padding:          8px 14px;
+    border-radius:    8px;
+    background-color: @background-alt;
+}
+
+textbox {
+    text-color:       @foreground;
+}
+
+listview {
+    columns:          4;
+    lines:            2;
+    fixed-columns:    true;
+    cycle:            true;
+    scrollbar:        false;
+    spacing:          10px;
+}
+
+element {
+    orientation:      vertical;
+    padding:          10px;
+    spacing:          6px;
+    border-radius:    8px;
+    background-color: @background-alt;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color:       @background;
+}
+
+element-icon {
+    size:             120px;
+    horizontal-align: 0.5;
+}
+
+element-text {
+    horizontal-align: 0.5;
+    vertical-align:   0.5;
+    text-color:       inherit;
+}

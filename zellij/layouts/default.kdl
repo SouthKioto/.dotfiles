@@ -1,0 +1,43 @@
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="file:/home/kioto/.config/zellij/plugins/zjstatus.wasm" {
+                format_left   "{mode} {session}"
+                format_center "{tabs}"
+                format_right  "{command_git_branch} {command_git_dirty} │ {datetime}"
+
+                border_enabled  "true"
+                border_position "top"
+                border_char     "─"
+                border_format   "#[fg=#44474f]{char}"
+
+                mode_normal  "#[fg=#adc6ff,bg=#111318]#[fg=#111318,bg=#adc6ff,bold] NORMAL #[fg=#adc6ff,bg=#111318]"
+                mode_insert  "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] INSERT #[fg=#debcdf,bg=#111318]"
+                mode_locked  "#[fg=#ffb4ab,bg=#111318]#[fg=#111318,bg=#ffb4ab,bold] LOCKED #[fg=#ffb4ab,bg=#111318]"
+                mode_resize  "#[fg=#bfc6dc,bg=#111318]#[fg=#111318,bg=#bfc6dc,bold] RESIZE #[fg=#bfc6dc,bg=#111318]"
+                mode_tab     "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] TAB #[fg=#debcdf,bg=#111318]"
+                mode_pane    "#[fg=#adc6ff,bg=#111318]#[fg=#111318,bg=#adc6ff,bold] PANE #[fg=#adc6ff,bg=#111318]"
+                mode_move    "#[fg=#bfc6dc,bg=#111318]#[fg=#111318,bg=#bfc6dc,bold] MOVE #[fg=#bfc6dc,bg=#111318]"
+                mode_scroll  "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] SCROLL #[fg=#debcdf,bg=#111318]"
+                mode_session "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] SESSION #[fg=#debcdf,bg=#111318]"
+                mode_default_to_mode "normal"
+
+                session "#[fg=#e2e2e9,bg=#111318,bold] 󱂬 {name}"
+
+                tab_separator " "
+                tab_normal   "#[fg=#8e9099,bg=#111318] {index}:{name} "
+                tab_active   "#[fg=#adc6ff,bg=#111318]#[fg=#111318,bg=#adc6ff,bold] {index}:{name} #[fg=#adc6ff,bg=#111318]"
+                tab_fullscreen_indicator "󰊓 "
+                tab_floating_indicator   "󰉈 "
+                tab_sync_indicator       "󰓦 "
+
+                datetime        "#[fg=#bfc6dc,bold]󰥔 {format}"
+                datetime_format "%a %d %b %H:%M"
+                datetime_timezone "Europe/Warsaw"
+
+                hide_frame_for_single_pane "false"
+            }
+        }
+        children
+    }
+}
