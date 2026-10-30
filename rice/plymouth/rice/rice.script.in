@@ -1,0 +1,53 @@
+# Plymouth: tło = surface, spinner z 12 kropek = primary (z hypr/colors.conf w chwili instalacji).
+# Znaczniki @…@ podmienia rice/install.sh.
+
+Window.SetBackgroundTopColor(@BG_R@, @BG_G@, @BG_B@);
+Window.SetBackgroundBottomColor(@BG_R@, @BG_G@, @BG_B@);
+
+N = 12;
+RADIUS = 26;
+dot = Image("dot.png");
+cx = Window.GetX() + Window.GetWidth() / 2;
+cy = Window.GetY() + Window.GetHeight() / 2;
+
+for (i = 0; i < N; i++) {
+    angle = i * 2 * Math.Pi / N;
+    dots[i] = Sprite(dot);
+    dots[i].SetX(cx + RADIUS * Math.Sin(angle) - dot.GetWidth() / 2);
+    dots[i].SetY(cy - RADIUS * Math.Cos(angle) - dot.GetHeight() / 2);
+    dots[i].SetOpacity(0.15);
+}
+
+frame = 0;
+fun refresh_callback() {
+    frame++;
+    head = Math.Int(frame / 4) % N;          # ~12 kroków na sekundę przy 50 FPS
+    for (i = 0; i < N; i++) {
+        d = (head - i + N) % N;              # 0 = czoło, dalej ogon
+        dots[i].SetOpacity(1 - d / N * 0.85);
+    }
+}
+Plymouth.SetRefreshFunction(refresh_callback);
+
+# wiadomości (np. fsck) pod spinnerem
+msg = Sprite();
+msg.SetPosition(cx, cy + 70, 1);
+fun message_callback(text) {
+    img = Image.Text(text, @FG_R@, @FG_G@, @FG_B@);
+    msg.SetImage(img);
+    msg.SetX(cx - img.GetWidth() / 2);
+}
+Plymouth.SetMessageFunction(message_callback);
+
+# hasło (gdyby kiedyś pojawił się LUKS)
+prompt = Sprite();
+fun password_callback(text, bullets) {
+    s = text + "  ";
+    for (i = 0; i < bullets; i++) s = s + "●";
+    img = Image.Text(s, @FG_R@, @FG_G@, @FG_B@);
+    prompt.SetImage(img);
+    prompt.SetPosition(cx - img.GetWidth() / 2, cy + 100, 1);
+}
+Plymouth.SetDisplayPasswordFunction(password_callback);
+fun normal_callback() { prompt.SetImage(Image.Text("", 0, 0, 0)); }
+Plymouth.SetDisplayNormalFunction(normal_callback);

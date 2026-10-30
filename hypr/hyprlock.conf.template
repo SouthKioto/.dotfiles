@@ -125,7 +125,7 @@ input-field {
 # CURRENT SONG
 label {
     monitor =
-    text = cmd[update:1000] echo "$(~/.config/hypr/Scripts/songdetail.sh)" 
+    text = cmd[update:1000] playerctl status >/dev/null 2>&1 && echo "󰎆  $(playerctl metadata artist) — $(playerctl metadata title)"
     color = rgba(255, 255, 255, 0.6)
     font_size = 18
     font_family = JetBrains Mono Nerd, SF Pro Display Bold

@@ -1,0 +1,38 @@
+# Matugen — nie edytuj ręcznie (szablon: ~/.config/matugen/templates/zathurarc)
+set selection-clipboard clipboard
+set adjust-open width
+set scroll-step 80
+set window-title-basename true
+set statusbar-home-tilde true
+set font "JetBrainsMono Nerd Font 10"
+
+# Ctrl+R: tryb ciemny dokumentu w kolorach tapety
+set recolor-keephue true
+set recolor-lightcolor "#{{colors.surface.default.hex_stripped}}"
+set recolor-darkcolor "#{{colors.on_surface.default.hex_stripped}}"
+
+set default-bg "#{{colors.surface.default.hex_stripped}}"
+set default-fg "#{{colors.on_surface.default.hex_stripped}}"
+set statusbar-bg "#{{colors.surface_container.default.hex_stripped}}"
+set statusbar-fg "#{{colors.on_surface.default.hex_stripped}}"
+set inputbar-bg "#{{colors.surface_container.default.hex_stripped}}"
+set inputbar-fg "#{{colors.on_surface.default.hex_stripped}}"
+set notification-bg "#{{colors.surface_container.default.hex_stripped}}"
+set notification-fg "#{{colors.on_surface.default.hex_stripped}}"
+set notification-error-bg "#{{colors.surface_container.default.hex_stripped}}"
+set notification-error-fg "#{{colors.error.default.hex_stripped}}"
+set highlight-color "rgba({{colors.primary.default.red}}, {{colors.primary.default.green}}, {{colors.primary.default.blue}}, 0.35)"
+set highlight-active-color "rgba({{colors.secondary.default.red}}, {{colors.secondary.default.green}}, {{colors.secondary.default.blue}}, 0.5)"
+set index-bg "#{{colors.surface.default.hex_stripped}}"
+set index-fg "#{{colors.on_surface.default.hex_stripped}}"
+set index-active-bg "#{{colors.primary.default.hex_stripped}}"
+set index-active-fg "#{{colors.on_primary.default.hex_stripped}}"
+set completion-bg "#{{colors.surface_container.default.hex_stripped}}"
+set completion-fg "#{{colors.on_surface.default.hex_stripped}}"
+set completion-highlight-bg "#{{colors.primary.default.hex_stripped}}"
+set completion-highlight-fg "#{{colors.on_primary.default.hex_stripped}}"
+
+map <C-r> recolor
+map J zoom out
+map K zoom in
+map i recolor

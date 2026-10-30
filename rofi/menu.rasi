@@ -1,0 +1,17 @@
+/**
+ * Małe menu (zasilanie, procesy, schowek) — baza z theme.rasi
+ **/
+
+@import "theme.rasi"
+
+configuration {
+    show-icons: false;
+}
+
+window {
+    width: 300px;
+}
+
+listview {
+    lines: 6;
+}

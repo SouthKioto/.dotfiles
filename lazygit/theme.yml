@@ -1,0 +1,17 @@
+# Matugen — nie edytuj ręcznie. Ładowany obok config.yml przez LG_CONFIG_FILE (env.lua)
+gui:
+  theme:
+    activeBorderColor: ["#ffb4aa", bold]
+    inactiveBorderColor: ["#534341"]
+    searchingActiveBorderColor: ["#e0c38c", bold]
+    optionsTextColor: ["#e7bdb7"]
+    selectedLineBgColor: ["#3d3231"]
+    inactiveViewSelectedLineBgColor: ["#322826"]
+    cherryPickedCommitFgColor: ["#3f2e04"]
+    cherryPickedCommitBgColor: ["#e0c38c"]
+    markedBaseCommitFgColor: ["#442926"]
+    markedBaseCommitBgColor: ["#e7bdb7"]
+    unstagedChangesColor: ["#ffb4ab"]
+    defaultFgColor: ["#f1dedc"]
+  authorColors:
+    "*": "#e0c38c"

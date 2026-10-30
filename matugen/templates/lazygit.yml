@@ -1,0 +1,17 @@
+# Matugen — nie edytuj ręcznie. Ładowany obok config.yml przez LG_CONFIG_FILE (env.lua)
+gui:
+  theme:
+    activeBorderColor: ["#{{colors.primary.default.hex_stripped}}", bold]
+    inactiveBorderColor: ["#{{colors.outline_variant.default.hex_stripped}}"]
+    searchingActiveBorderColor: ["#{{colors.tertiary.default.hex_stripped}}", bold]
+    optionsTextColor: ["#{{colors.secondary.default.hex_stripped}}"]
+    selectedLineBgColor: ["#{{colors.surface_container_highest.default.hex_stripped}}"]
+    inactiveViewSelectedLineBgColor: ["#{{colors.surface_container_high.default.hex_stripped}}"]
+    cherryPickedCommitFgColor: ["#{{colors.on_tertiary.default.hex_stripped}}"]
+    cherryPickedCommitBgColor: ["#{{colors.tertiary.default.hex_stripped}}"]
+    markedBaseCommitFgColor: ["#{{colors.on_secondary.default.hex_stripped}}"]
+    markedBaseCommitBgColor: ["#{{colors.secondary.default.hex_stripped}}"]
+    unstagedChangesColor: ["#{{colors.error.default.hex_stripped}}"]
+    defaultFgColor: ["#{{colors.on_surface.default.hex_stripped}}"]
+  authorColors:
+    "*": "#{{colors.tertiary.default.hex_stripped}}"

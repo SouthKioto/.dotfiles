@@ -3,20 +3,17 @@
 -------------------------------
 
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Environment-variables/
+-- XDG_CURRENT_DESKTOP / XDG_SESSION_* ustawia sam Hyprland
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
--- toolkit backend
+-- toolkit backend (z fallbackiem na X11, inaczej część gier/Steam się nie odpali)
 hl.env("GDK_BACKEND", "wayland,x11,*")
-hl.env("SDL_VIDEODRIVER", "wayland")
+hl.env("SDL_VIDEODRIVER", "wayland,x11")
 hl.env("CLUTTER_BACKEND", "wayland")
-hl.env("ELECTRON_OZONE_PLATFORM_HINT", "wayland")
-
--- xdg
-hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
-hl.env("XDG_SESSION_TYPE", "wayland")
-hl.env("XDG_SESSION_DESKTOP", "Hyprland")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("MOZ_ENABLE_WAYLAND", "1")
 
 -- Qt
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
@@ -24,14 +21,9 @@ hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "1")
 hl.env("QT_WAYLAND_DISABLE_WINDOWDECORATION", "1")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
 
--- Intel iGPU
+-- Intel iGPU: sprzętowe dekodowanie wideo (VA-API, intel-media-driver)
 hl.env("LIBVA_DRIVER_NAME", "iHD")
-hl.env("VDPAU_DRIVER", "va_gl")
--- hl.env("WLR_NO_HARDWARE_CURSORS", "1")
-hl.env("MESA_VK_WSI_PRESENT_MODE", "fifo")
--- INTEL_DEBUG=nocompute USUNIĘTE
--- WLR_DRM_NO_ATOMIC=0 USUNIĘTE (default)
 
-hl.env("GBM_BACKEND", "drm-backend")
-hl.env("MOZ_ENABLE_WAYLAND", "1") -- Wymusza natywny Wayland dla Firefoxa
-hl.env("NVD_BACKEND", "direct")
+-- motywy TUI z kolorów matugena (lazygit: config + theme.yml; bat: paleta ANSI terminala = kitty z matugena)
+hl.env("LG_CONFIG_FILE", os.getenv("HOME") .. "/.config/lazygit/config.yml," .. os.getenv("HOME") .. "/.config/lazygit/theme.yml")
+hl.env("BAT_THEME", "base16")

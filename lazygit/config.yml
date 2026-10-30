@@ -1,0 +1,8 @@
+# Kolory: theme.yml (matugen), ładowany razem z tym plikiem przez LG_CONFIG_FILE w hypr/modules/env.lua
+gui:
+  nerdFontsVersion: "3"
+  showIcons: true
+  border: rounded
+git:
+  diffRenderers:
+    - command: delta --{{colorScheme}} --paging=never --line-numbers

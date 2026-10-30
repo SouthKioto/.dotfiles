@@ -1,0 +1,12 @@
+# satty — adnotacje zrzutów ekranu (wywoływane przez ~/.config/hypr/scripts/screenshot.sh)
+[general]
+early-exit = true                       # po zapisie/skopiowaniu zamknij okno
+initial-tool = "arrow"
+copy-command = "wl-copy"
+output-filename = "/home/kioto/Obrazy/%Y-%m-%d_%H-%M-%S_satty.png"
+actions-on-enter = ["save-to-clipboard", "save-to-file"]   # Enter: schowek + ~/Obrazy
+actions-on-escape = ["exit"]
+primary-highlighter = "block"
+
+[font]
+family = "JetBrainsMono Nerd Font"

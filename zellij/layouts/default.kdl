@@ -1,41 +1,60 @@
 layout {
     default_tab_template {
-        pane size=1 borderless=true {
+        pane size=2 borderless=true {
             plugin location="file:/home/kioto/.config/zellij/plugins/zjstatus.wasm" {
-                format_left   "{mode} {session}"
-                format_center "{tabs}"
-                format_right  "{command_git_branch} {command_git_dirty} │ {datetime}"
+                format_left   "{mode} {tabs}"
+                format_center ""
+                format_right  "{pipe_zjstatus_hints}{command_git} {session} │ {datetime} "
+                format_space  "#[bg=#1a1110]"
+                format_hide_on_overlength "true"
+                format_precedence "lrc"
 
                 border_enabled  "true"
-                border_position "top"
+                border_position "bottom"
                 border_char     "─"
-                border_format   "#[fg=#44474f]{char}"
-
-                mode_normal  "#[fg=#adc6ff,bg=#111318]#[fg=#111318,bg=#adc6ff,bold] NORMAL #[fg=#adc6ff,bg=#111318]"
-                mode_insert  "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] INSERT #[fg=#debcdf,bg=#111318]"
-                mode_locked  "#[fg=#ffb4ab,bg=#111318]#[fg=#111318,bg=#ffb4ab,bold] LOCKED #[fg=#ffb4ab,bg=#111318]"
-                mode_resize  "#[fg=#bfc6dc,bg=#111318]#[fg=#111318,bg=#bfc6dc,bold] RESIZE #[fg=#bfc6dc,bg=#111318]"
-                mode_tab     "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] TAB #[fg=#debcdf,bg=#111318]"
-                mode_pane    "#[fg=#adc6ff,bg=#111318]#[fg=#111318,bg=#adc6ff,bold] PANE #[fg=#adc6ff,bg=#111318]"
-                mode_move    "#[fg=#bfc6dc,bg=#111318]#[fg=#111318,bg=#bfc6dc,bold] MOVE #[fg=#bfc6dc,bg=#111318]"
-                mode_scroll  "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] SCROLL #[fg=#debcdf,bg=#111318]"
-                mode_session "#[fg=#debcdf,bg=#111318]#[fg=#111318,bg=#debcdf,bold] SESSION #[fg=#debcdf,bg=#111318]"
-                mode_default_to_mode "normal"
-
-                session "#[fg=#e2e2e9,bg=#111318,bold] 󱂬 {name}"
-
-                tab_separator " "
-                tab_normal   "#[fg=#8e9099,bg=#111318] {index}:{name} "
-                tab_active   "#[fg=#adc6ff,bg=#111318]#[fg=#111318,bg=#adc6ff,bold] {index}:{name} #[fg=#adc6ff,bg=#111318]"
-                tab_fullscreen_indicator "󰊓 "
-                tab_floating_indicator   "󰉈 "
-                tab_sync_indicator       "󰓦 "
-
-                datetime        "#[fg=#bfc6dc,bold]󰥔 {format}"
-                datetime_format "%a %d %b %H:%M"
-                datetime_timezone "Europe/Warsaw"
+                border_format   "#[fg=#534341]{char}"
 
                 hide_frame_for_single_pane "false"
+
+                mode_normal "#[fg=#ffb4aa,bg=#1a1110]#[fg=#1a1110,bg=#ffb4aa,bold] NORMAL #[fg=#ffb4aa,bg=#1a1110]"
+                mode_locked "#[fg=#ffb4ab,bg=#1a1110]#[fg=#1a1110,bg=#ffb4ab,bold] LOCKED #[fg=#ffb4ab,bg=#1a1110]"
+                mode_resize "#[fg=#e7bdb7,bg=#1a1110]#[fg=#1a1110,bg=#e7bdb7,bold] RESIZE #[fg=#e7bdb7,bg=#1a1110]"
+                mode_pane "#[fg=#ffb4aa,bg=#1a1110]#[fg=#1a1110,bg=#ffb4aa,bold] PANE #[fg=#ffb4aa,bg=#1a1110]"
+                mode_tab "#[fg=#e0c38c,bg=#1a1110]#[fg=#1a1110,bg=#e0c38c,bold] TAB #[fg=#e0c38c,bg=#1a1110]"
+                mode_move "#[fg=#e7bdb7,bg=#1a1110]#[fg=#1a1110,bg=#e7bdb7,bold] MOVE #[fg=#e7bdb7,bg=#1a1110]"
+                mode_scroll "#[fg=#e0c38c,bg=#1a1110]#[fg=#1a1110,bg=#e0c38c,bold] SCROLL #[fg=#e0c38c,bg=#1a1110]"
+                mode_search "#[fg=#e0c38c,bg=#1a1110]#[fg=#1a1110,bg=#e0c38c,bold] SEARCH #[fg=#e0c38c,bg=#1a1110]"
+                mode_entersearch "#[fg=#e0c38c,bg=#1a1110]#[fg=#1a1110,bg=#e0c38c,bold] SEARCH #[fg=#e0c38c,bg=#1a1110]"
+                mode_renametab "#[fg=#e0c38c,bg=#1a1110]#[fg=#1a1110,bg=#e0c38c,bold] RENAME #[fg=#e0c38c,bg=#1a1110]"
+                mode_renamepane "#[fg=#e0c38c,bg=#1a1110]#[fg=#1a1110,bg=#e0c38c,bold] RENAME #[fg=#e0c38c,bg=#1a1110]"
+                mode_session "#[fg=#e0c38c,bg=#1a1110]#[fg=#1a1110,bg=#e0c38c,bold] SESSION #[fg=#e0c38c,bg=#1a1110]"
+                mode_tmux "#[fg=#ffb4ab,bg=#1a1110]#[fg=#1a1110,bg=#ffb4ab,bold] TMUX #[fg=#ffb4ab,bg=#1a1110]"
+                mode_default_to_mode "normal"
+
+                session "#[fg=#f1dedc,bg=#1a1110,bold]󱂬 {name}"
+
+                tab_separator " "
+                tab_normal   "#[fg=#a08c8a,bg=#1a1110] {index}:{name}{floating_indicator}{fullscreen_indicator}{sync_indicator} "
+                tab_active   "#[fg=#ffb4aa,bg=#1a1110]#[fg=#1a1110,bg=#ffb4aa,bold] {index}:{name}{floating_indicator}{fullscreen_indicator}{sync_indicator} #[fg=#ffb4aa,bg=#1a1110]"
+                tab_fullscreen_indicator " 󰊓"
+                tab_floating_indicator   " 󰉈"
+                tab_sync_indicator       " 󰓦"
+                tab_display_count        "9"
+                tab_truncate_start_format "#[fg=#a08c8a] < +{count} ..."
+                tab_truncate_end_format   "#[fg=#a08c8a] ... +{count} >"
+
+                // gałąź git katalogu sesji (patrz scripts/git-status.sh)
+                command_git_command    "/home/kioto/.config/zellij/scripts/git-status.sh"
+                command_git_format     "#[fg=#e0c38c]{stdout}"
+                command_git_interval   "5"
+                command_git_rendermode "static"
+
+                // podpowiedzi skrótów dla aktualnego trybu (plugin zjstatus-hints)
+                pipe_zjstatus_hints_format "#[fg=#a08c8a]{output} "
+
+                datetime          "#[fg=#e7bdb7,bold]󰥔 {format}"
+                datetime_format   "%a %d %b %H:%M"
+                datetime_timezone "Europe/Warsaw"
             }
         }
         children

@@ -1,0 +1,11 @@
+# imv — przeglądarka zdjęć (domyślna dla obrazów; edycja dalej w GIMP: klawisz e)
+[options]
+background = 1a1a1a
+overlay_font = JetBrainsMono Nerd Font:11
+title_text = imv — $imv_current_file [$imv_current_index/$imv_file_count]
+
+[binds]
+e = exec gimp "$imv_current_file" &
+y = exec wl-copy < "$imv_current_file"
+<Delete> = exec gio trash "$imv_current_file"; close
+r = rotate by 90

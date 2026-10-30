@@ -1,15 +1,30 @@
 {
     "label" : "lock",
     "action" : "loginctl lock-session",
+    "text" : "Zablokuj",
     "keybind" : "l"
 }
 {
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Uśpij",
+    "keybind" : "u"
+}
+{
     "label" : "logout",
-    "action" : "loginctl terminate-user $USER",
+    "action" : "hyprctl dispatch 'hl.dsp.exit()'",
+    "text" : "Wyloguj",
     "keybind" : "e"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Restart",
+    "keybind" : "r"
 }
 {
     "label" : "shutdown",
     "action" : "systemctl poweroff",
+    "text" : "Wyłącz",
     "keybind" : "s"
 }

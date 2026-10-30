@@ -1,6 +1,6 @@
 @import "colors/colors.css";
 @define-color bg @background;
-@define-color fg @foreground;
+@define-color fg @on_background;
 @define-color ia1 #777777;
 
 * {
@@ -26,10 +26,10 @@ window#waybar.hidden {
 
 #waybar > box {
   border-radius: 0px;
-  /* border-bottom: 1px solid rgba(255, 255, 255, 0.2); */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   margin: 0px 0px 1px 0px;
-  /*background-color: @bg; */
-  /*box-shadow: 0 1px 2px rgba(0, 0, 0, 1); */
+  background-color: @bg;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 1);
   min-height: 15px;
   transition-property: background-color;
   transition-duration: 0.5s;
@@ -84,7 +84,7 @@ button:hover {
   border-radius: 3px;
 }
 
-#workspaces button {
+#custom-ws {
   color: @fg;
   background-color: @bg;
   padding: 0px 4px;
@@ -92,24 +92,17 @@ button:hover {
   border-radius: 2px;
 }
 
-#workspaces button.active {
+#custom-ws.active {
   background-color: @fg;
   color: @bg;
 }
 
-#workspaces button.empty {
-  color: @fg;
-  background: @bg;
+#custom-ws.empty {
   opacity: 0.35;
 }
 
-#workspaces button.empty.active {
-  color: @bg;
-  background: @fg;
-  opacity: 1;
-}
-
-#workspaces button:hover {
+#custom-ws.empty.active,
+#custom-ws:hover {
   background-color: @fg;
   color: @bg;
   opacity: 1;
@@ -126,6 +119,7 @@ button:hover {
 #backlight,
 #bluetooth,
 #pulseaudio,
+#custom-power,
 #custom-idle-indicator,
 #custom-notification-silencing-indicator,
 #custom-updatespacman,
@@ -161,6 +155,7 @@ button:hover {
 #network,
 #backlight,
 #bluetooth,
+#custom-power,
 #pulseaudio {
   border-radius: 3px;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -188,6 +183,54 @@ tooltip {
 tooltip label {
   color: @fg;
   font-weight: bold;
+}
+
+#custom-weather {
+  padding: 0 4px 0 8px;
+}
+
+#custom-updates {
+  min-width: 12px;
+  padding: 0 6px;
+  margin: 1px 2px 2px 2px;
+  border-radius: 3px;
+  background-color: @bg;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#custom-updates.many {
+  color: @error;
+}
+
+#custom-updates.none {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+}
+
+#custom-focus.active {
+  color: @on_primary;
+  background-color: @primary;
+  border-radius: 3px;
+  padding: 0 8px;
+  margin: 1px 4px 2px 4px;
+  font-weight: bold;
+}
+
+#custom-nightlight {
+  min-width: 12px;
+  padding: 0 4px;
+  margin: 1px 2px 2px 2px;
+}
+
+#custom-nightlight.warm {
+  color: @primary;
+}
+
+#custom-nightlight.off {
+  padding: 0;
+  margin: 0;
 }
 
 #custom-voxtype {
@@ -282,4 +325,25 @@ tooltip label {
   animation-timing-function: steps(12);
   animation-iteration-count: infinite;
   animation-direction: alternate;
+}
+
+/* --- profil zasilania (power-profile.sh) --- */
+#custom-power.performance {
+  color: @tertiary;
+}
+#custom-power.power-saver {
+  color: @primary;
+}
+
+/* --- nagrywanie ekranu (record.sh) — widoczne tylko w trakcie --- */
+#custom-recording.recording {
+  color: @error;
+  padding: 0 6px;
+  margin-right: 6px;
+  animation: rec-blink 1.2s ease-in-out infinite alternate;
+}
+@keyframes rec-blink {
+  to {
+    color: alpha(@error, 0.35);
+  }
 }

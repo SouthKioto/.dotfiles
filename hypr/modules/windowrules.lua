@@ -7,15 +7,7 @@
 
 -- Example window rules that are useful
 
-local floatAllRule = hl.window_rule({
-	-- Wszystkie okna floating przy starcie
-	name = "float-all-windows",
-	match = { class = ".*" },
-	float = true,
-	center = true,
-	size = "1300 750",
-})
--- floatAllRule:set_enabled(false)
+-- Okna kafelkują się normalnie; pływają tylko te z reguł niżej (dialogi, mikser, pickery)
 
 local suppressMaximizeRule = hl.window_rule({
 	-- Ignore maximize requests from all apps. You'll probably like this.
@@ -64,25 +56,19 @@ hl.layer_rule({
 	animation = "slide right",
 })
 
-hl.window_rule({
-	name = "scratchterm",
-	match = { class = "scratchterm" },
-	workspace = "special:term",
+hl.layer_rule({
+	-- podgląd workspace'ów (Quickshell, SUPER + TAB): rozmyte tło, przyciemnienie robi sam QML
+	name = "overview-blur",
+	match = { namespace = "^overview$" },
+	blur = true,
+	ignore_alpha = 0.3,
+	animation = "fade",
 })
 
 hl.window_rule({
 	name = "steam-games-fullscreen",
 	match = { class = "^steam_app_.*" },
 	fullscreen = true,
-})
-
--- pavucontrol (mikser dźwięku)
-hl.window_rule({
-	name = "float-pavucontrol",
-	match = { class = "org.pavucontrol_qt.pavucontrol-qt" },
-	float = true,
-	size = "800 600",
-	center = true,
 })
 
 -- waypaper (picker tapet, jeśli używasz zamiast swojego skryptu)
@@ -110,9 +96,55 @@ hl.window_rule({
 	size = "900 650",
 })
 
+-- edytor zrzutów ekranu (scripts/screenshot.sh): satty, a swappy jako zapas
+hl.window_rule({
+	name = "float-screenshot-editor",
+	match = { class = "^(com\\.gabm\\.satty|swappy)$" },
+	float = true,
+	center = true,
+	size = "monitor_w*0.8 monitor_h*0.8",
+})
+
 -- GIMP dialogi (toolboxy, okna narzędzi)
 hl.window_rule({
 	name = "float-gimp-dialogs",
-	match = { class = "^Gimp.*", title = "^(?!.*GNU Image Manipulation Program).*$" },
+	match = { class = "^Gimp.*", title = "negative:.*GNU Image Manipulation Program.*" },
 	float = true,
+})
+
+-- Typowe okna dialogowe (otwórz/zapisz, potwierdzenia) w każdej aplikacji
+hl.window_rule({
+	name = "float-common-dialogs",
+	match = { title = "^(Open File|Save As|Save File|Otwórz plik|Zapisz plik|Zapisz jako|File Upload|Choose Files|Confirm.*|Potwierdź.*)$" },
+	float = true,
+	center = true,
+})
+
+-- Obraz w obrazie (Brave/YouTube) — pływa, przypięty w rogu
+hl.window_rule({
+	name = "pip",
+	match = { title = "^(Picture in picture|Obraz w obrazie)$" },
+	float = true,
+	pin = true,
+	size = "640 360",
+	move = "monitor_w-660 monitor_h-380",
+})
+
+-- ── Steam / gry ──────────────────────────────────────────
+-- okna pomocnicze Steama (znajomi, ustawienia, pobieranie) pływają, główne okno kafelkuje
+hl.window_rule({
+	name = "steam-dialogs",
+	match = { class = "^steam$", title = "negative:^Steam$" },
+	float = true,
+	center = true,
+})
+
+-- gra: bez bluru, przyciemniania i zaokrągleń, blokuje wygaszanie ekranu
+hl.window_rule({
+	name = "steam-games-perf",
+	match = { class = "^(steam_app_.*|gamescope)$" },
+	no_blur = true,
+	no_dim = true,
+	rounding = 0,
+	idle_inhibit = "always",
 })

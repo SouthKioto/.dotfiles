@@ -1,0 +1,112 @@
+/**
+ * Wspólna baza dla wszystkich okien rofi — wygląd 1:1 jak waybar
+ * (zaokrąglenie 3px, JetBrainsMono Propo Bold, cień i jasne obramowanie od dołu,
+ *  zaznaczenie odwrócone jak aktywny workspace). Kolory z Matugena.
+ **/
+
+@import "colors/colors.rasi"
+
+* {
+    font:             "JetBrainsMono Nerd Font Propo Bold 10";
+    background-color: transparent;
+    text-color:       @foreground;
+
+    edge:             #ffffff33;   /* = rgba(255,255,255,0.2) z waybara */
+    edge-soft:        #ffffff1a;   /* = rgba(255,255,255,0.1) */
+}
+
+window {
+    location:         center;
+    anchor:           center;
+    width:            360px;
+    border:           0px 1px 1px 1px;
+    border-color:     @edge;
+    border-radius:    3px;
+    background-color: @background;
+}
+
+mainbox {
+    children:         [ inputbar, message, listview ];
+    spacing:          6px;
+    padding:          6px;
+}
+
+inputbar {
+    children:         [ prompt, textbox-sep, entry ];
+    spacing:          6px;
+    padding:          5px 8px;
+    border:           0px 0px 1px 0px;
+    border-color:     @edge;
+    border-radius:    3px;
+    background-color: @background-alt;
+}
+
+prompt {
+    text-color:       @selected;
+}
+
+textbox-sep {
+    expand:           false;
+    str:              "|";
+    text-color:       #ffffff33;
+}
+
+entry {
+    placeholder:       "szukaj…";
+    placeholder-color: #ffffff4d;
+    cursor:            text;
+}
+
+message {
+    padding:          5px 8px;
+    border-radius:    3px;
+    background-color: @background-alt;
+}
+
+textbox {
+    text-color:       @foreground;
+}
+
+listview {
+    columns:          1;
+    lines:            8;
+    dynamic:          true;
+    fixed-height:     false;
+    cycle:            true;
+    scrollbar:        false;
+    spacing:          2px;
+}
+
+element {
+    orientation:      horizontal;
+    spacing:          8px;
+    padding:          4px 8px;
+    border-radius:    2px;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    text-color:       @urgent;
+}
+
+element normal.active,
+element alternate.active {
+    text-color:       @active;
+}
+
+element selected.normal,
+element selected.active,
+element selected.urgent {
+    background-color: @foreground;
+    text-color:       @background;
+}
+
+element-icon {
+    size:             20px;
+    vertical-align:   0.5;
+}
+
+element-text {
+    vertical-align:   0.5;
+    text-color:       inherit;
+}

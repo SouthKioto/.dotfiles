@@ -1,0 +1,79 @@
+# Matugen — nie edytuj ręcznie
+[mgr]
+cwd = { fg = "#e0c38c" }
+find_keyword = { fg = "#e0c38c", bold = true, italic = true }
+find_position = { fg = "#e7bdb7", italic = true }
+marker_copied = { fg = "#e7bdb7", bg = "#e7bdb7" }
+marker_cut = { fg = "#ffb4ab", bg = "#ffb4ab" }
+marker_marked = { fg = "#e0c38c", bg = "#e0c38c" }
+marker_selected = { fg = "#ffb4aa", bg = "#ffb4aa" }
+count_copied = { fg = "#442926", bg = "#e7bdb7" }
+count_cut = { fg = "#690005", bg = "#ffb4ab" }
+count_selected = { fg = "#561e19", bg = "#ffb4aa" }
+border_symbol = "│"
+border_style = { fg = "#534341" }
+
+[tabs]
+active = { fg = "#561e19", bg = "#ffb4aa", bold = true }
+inactive = { fg = "#d8c2bf", bg = "#322826" }
+
+[mode]
+normal_main = { fg = "#561e19", bg = "#ffb4aa", bold = true }
+normal_alt = { fg = "#ffb4aa", bg = "#322826" }
+select_main = { fg = "#442926", bg = "#e7bdb7", bold = true }
+select_alt = { fg = "#e7bdb7", bg = "#322826" }
+unset_main = { fg = "#3f2e04", bg = "#e0c38c", bold = true }
+unset_alt = { fg = "#e0c38c", bg = "#322826" }
+
+[indicator]
+parent = { fg = "#f1dedc", bg = "#322826" }
+current = { fg = "#561e19", bg = "#ffb4aa", bold = true }
+preview = { underline = true }
+
+[status]
+perm_type = { fg = "#ffb4aa" }
+perm_read = { fg = "#e0c38c" }
+perm_write = { fg = "#ffb4ab" }
+perm_exec = { fg = "#e7bdb7" }
+perm_sep = { fg = "#a08c8a" }
+progress_label = { fg = "#f1dedc", bold = true }
+progress_normal = { fg = "#ffb4aa", bg = "#322826" }
+progress_error = { fg = "#ffb4ab", bg = "#322826" }
+
+[input]
+border = { fg = "#ffb4aa" }
+title = {}
+value = {}
+selected = { reversed = true }
+
+[cmp]
+border = { fg = "#ffb4aa" }
+
+[tasks]
+border = { fg = "#ffb4aa" }
+title = {}
+hovered = { fg = "#e0c38c", underline = true }
+
+[which]
+mask = { bg = "#271d1c" }
+cand = { fg = "#e0c38c" }
+rest = { fg = "#a08c8a" }
+desc = { fg = "#e7bdb7" }
+separator_style = { fg = "#534341" }
+
+[help]
+on = { fg = "#e0c38c" }
+run = { fg = "#e7bdb7" }
+hovered = { reversed = true, bold = true }
+footer = { fg = "#f1dedc", bg = "#322826" }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#e0c38c" },
+  { mime = "{audio,video}/*", fg = "#e7bdb7" },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#ffb4ab" },
+  { mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#d8c2bf" },
+  { url = "*", is = "orphan", fg = "#ffb4ab" },
+  { url = "*", is = "exec", fg = "#e7bdb7" },
+  { url = "*/", fg = "#ffb4aa" },
+]

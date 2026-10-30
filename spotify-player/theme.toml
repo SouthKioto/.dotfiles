@@ -1,0 +1,31 @@
+# Matugen — nie edytuj ręcznie
+[[themes]]
+name = "matugen"
+[themes.palette]
+background = "#1a1110"
+foreground = "#f1dedc"
+black = "#140c0b"
+red = "#ffb4ab"
+green = "#ffb4aa"
+yellow = "#e0c38c"
+blue = "#e7bdb7"
+magenta = "#e0c38c"
+cyan = "#ffb4aa"
+white = "#f1dedc"
+bright_black = "#a08c8a"
+bright_red = "#ffb4ab"
+bright_green = "#ffdad5"
+bright_yellow = "#fddfa6"
+bright_blue = "#ffdad5"
+bright_magenta = "#fddfa6"
+bright_cyan = "#ffdad5"
+bright_white = "#ffffff"
+[themes.component_style]
+selection = { bg = "#73342d", fg = "#ffdad5", modifiers = ["Bold"] }
+block_title = { fg = "#ffb4aa", modifiers = ["Bold"] }
+border = { fg = "#534341" }
+playback_track = { fg = "#ffb4aa", modifiers = ["Bold"] }
+playback_artists = { fg = "#e7bdb7" }
+playback_album = { fg = "#e0c38c" }
+playback_progress_bar = { bg = "#3d3231", fg = "#ffb4aa" }
+current_playing = { fg = "#ffb4aa", modifiers = ["Bold"] }

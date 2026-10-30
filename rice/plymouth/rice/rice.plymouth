@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Rice
+Description=Spinner w kolorach rice'a (matugen, wypalane przy instalacji)
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/rice
+ScriptFile=/usr/share/plymouth/themes/rice/rice.script

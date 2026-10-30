@@ -1,0 +1,6 @@
+[Unit]
+Description=Przypomnienie: repozytoria z niewypchniętymi zmianami (~/.config/rice/git-check.sh)
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/rice/git-check.sh

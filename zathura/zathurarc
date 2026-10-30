@@ -1,0 +1,38 @@
+# Matugen — nie edytuj ręcznie (szablon: ~/.config/matugen/templates/zathurarc)
+set selection-clipboard clipboard
+set adjust-open width
+set scroll-step 80
+set window-title-basename true
+set statusbar-home-tilde true
+set font "JetBrainsMono Nerd Font 10"
+
+# Ctrl+R: tryb ciemny dokumentu w kolorach tapety
+set recolor-keephue true
+set recolor-lightcolor "#1a1110"
+set recolor-darkcolor "#f1dedc"
+
+set default-bg "#1a1110"
+set default-fg "#f1dedc"
+set statusbar-bg "#271d1c"
+set statusbar-fg "#f1dedc"
+set inputbar-bg "#271d1c"
+set inputbar-fg "#f1dedc"
+set notification-bg "#271d1c"
+set notification-fg "#f1dedc"
+set notification-error-bg "#271d1c"
+set notification-error-fg "#ffb4ab"
+set highlight-color "rgba(255, 180, 170, 0.35)"
+set highlight-active-color "rgba(231, 189, 183, 0.5)"
+set index-bg "#1a1110"
+set index-fg "#f1dedc"
+set index-active-bg "#ffb4aa"
+set index-active-fg "#561e19"
+set completion-bg "#271d1c"
+set completion-fg "#f1dedc"
+set completion-highlight-bg "#ffb4aa"
+set completion-highlight-fg "#561e19"
+
+map <C-r> recolor
+map J zoom out
+map K zoom in
+map i recolor

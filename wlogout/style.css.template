@@ -1,0 +1,42 @@
+/* wlogout — wygląd jak waybar, kolory z Matugena (szablon: style.css.template) */
+
+* {
+  background-image: none;
+  box-shadow: none;
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-weight: bold;
+  font-size: 12px;
+}
+
+window {
+  background-color: alpha(#{{colors.background.default.hex_stripped}}, 0.80);
+}
+
+button {
+  color: #{{colors.on_background.default.hex_stripped}};
+  background-color: #{{colors.background.default.hex_stripped}};
+  background-repeat: no-repeat;
+  background-position: center 40%;
+  background-size: 22%;
+  margin: 6px;
+  border-radius: 3px;
+  border: none;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 1);
+  padding-top: 70px;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+button:focus,
+button:hover {
+  color: #{{colors.background.default.hex_stripped}};
+  background-color: #{{colors.on_background.default.hex_stripped}};
+  outline-style: none;
+}
+
+#lock     { background-image: image(url("/usr/share/wlogout/icons/lock.png")); }
+#suspend  { background-image: image(url("/usr/share/wlogout/icons/suspend.png")); }
+#logout   { background-image: image(url("/usr/share/wlogout/icons/logout.png")); }
+#reboot   { background-image: image(url("/usr/share/wlogout/icons/reboot.png")); }
+#shutdown { background-image: image(url("/usr/share/wlogout/icons/shutdown.png")); }

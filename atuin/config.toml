@@ -1,0 +1,18 @@
+# atuin — historia powłoki w SQLite, Ctrl+R w fish (init w fish/config.fish)
+# Synchronizacja między komputerami jest opcjonalna: `atuin register` / `atuin login`
+# (historia szyfrowana end-to-end). Bez logowania wszystko zostaje lokalnie.
+
+style = "compact"
+inline_height = 20
+show_preview = true
+show_help = false
+enter_accept = false          # Enter wkleja komendę do edycji zamiast od razu odpalać
+filter_mode = "global"
+filter_mode_shell_up_key_binding = "session"
+search_mode = "fuzzy"
+update_check = false
+secrets_filter = true         # nie zapisuj komend z tokenami/hasłami (AWS, GitHub, Slack…)
+history_filter = ["^\\s"]     # komenda zaczęta spacją nie trafia do historii
+
+[sync]
+records = true

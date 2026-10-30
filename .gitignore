@@ -51,6 +51,25 @@
 !/wlogout/
 !/xdg-desktop-portal/
 !/zellij/
+!/atuin/
+!/lazygit/
+!/quickshell/
+!/rice/
+# dodatki 2026-10-28: adnotacje zrzutów, PDF (zathurarc z matugena), wideo, zdjęcia
+!/satty/
+!/zathura/
+!/mpv/
+!/imv/
+# spotify-player: tylko motyw (app.toml ma client_id)
+!/spotify-player/
+/spotify-player/*
+!/spotify-player/theme.toml
+!/swayosd/
+!/yazi/
+# vesktop: tylko motyw (reszta katalogu to sesja/cache Discorda)
+!/vesktop/
+/vesktop/*
+!/vesktop/themes/
 
 # =====================================================================
 #  Wyjątki wewnątrz odblokowanych katalogów
@@ -60,6 +79,7 @@
 /hypr/raport.html
 /rofi/.current_wallpaper
 /btop/btop.log
+/rice/sddm/rice/dynamic/
 
 # Kopie zapasowe i pliki tymczasowe edytorów
 *.bak

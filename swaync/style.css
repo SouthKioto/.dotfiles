@@ -1,3 +1,205 @@
+/* swaync — wygląd jak waybar (3px, cień, jasne obramowanie od dołu, odwrócone zaznaczenie) */
 @import "colors.conf";
-@import "themes/nova-dark/notifications.css";
-@import "themes/nova-dark/central_control.css";
+
+@define-color bg   @background;
+@define-color bg2  alpha(@foreground, 0.06);
+@define-color fg   @foreground;
+@define-color edge rgba(255, 255, 255, 0.2);
+@define-color edge-soft rgba(255, 255, 255, 0.1);
+
+* {
+  font-family: "JetBrainsMono Nerd Font Propo";
+  font-weight: bold;
+  font-size: 12px;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out;
+}
+
+/* --- wspólny „kafelek” jak moduł waybara --- */
+.notification,
+.control-center,
+.widget-title,
+.widget-dnd,
+.widget-buttons-grid,
+.widget-mpris-player,
+.widget-label {
+  background-color: @bg;
+  color: @fg;
+  border-radius: 3px;
+  border: none;
+  border-left: 1px solid @edge-soft;
+  border-bottom: 1px solid @edge;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 1);
+}
+
+/* --- wyskakujące powiadomienia --- */
+.floating-notifications.background .notification-row {
+  padding: 4px;
+}
+
+.notification-row .notification-background {
+  background: transparent;
+  padding: 0;
+}
+
+.notification {
+  padding: 8px;
+  margin: 2px;
+}
+
+.notification.critical {
+  border-bottom: 1px solid @color1;
+}
+
+.notification-content {
+  padding: 2px;
+}
+
+.summary {
+  font-size: 12px;
+  color: @fg;
+}
+
+.body,
+.time {
+  font-size: 11px;
+  font-weight: normal;
+  color: alpha(@fg, 0.75);
+}
+
+.image {
+  border-radius: 3px;
+  margin-right: 6px;
+}
+
+.notification-action,
+.close-button,
+.widget-title > button,
+.widget-buttons-grid > flowbox > flowboxchild > button,
+.widget-mpris button,
+.notification-group-collapse-button,
+.notification-group-close-all-button {
+  background-color: @bg2;
+  color: @fg;
+  border: none;
+  border-radius: 2px;
+  box-shadow: none;
+  padding: 2px 8px;
+  margin: 2px;
+}
+
+.notification-action:hover,
+.close-button:hover,
+.widget-title > button:hover,
+.widget-buttons-grid > flowbox > flowboxchild > button:hover,
+.widget-mpris button:hover,
+.notification-group-collapse-button:hover,
+.notification-group-close-all-button:hover {
+  background-color: @fg;
+  color: @bg;
+}
+
+.close-button {
+  padding: 0 4px;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+progressbar trough {
+  background-color: @bg2;
+  border-radius: 2px;
+  min-height: 4px;
+}
+
+progressbar progress {
+  background-color: @fg;
+  border-radius: 2px;
+}
+
+/* --- centrum powiadomień --- */
+.control-center {
+  padding: 6px;
+  margin: 2px;
+}
+
+.control-center .notification-row .notification-background {
+  padding: 0;
+}
+
+.control-center .notification {
+  box-shadow: none;
+  border-left: none;
+  border-bottom: 1px solid @edge-soft;
+  background-color: alpha(@fg, 0.03);
+}
+
+.widget-label,
+.widget-title,
+.widget-dnd,
+.widget-buttons-grid,
+.widget-mpris {
+  margin: 3px 2px;
+  padding: 4px 8px;
+}
+
+.widget-label > label {
+  font-size: 14px;
+}
+
+.widget-title > label {
+  font-size: 12px;
+}
+
+.widget-dnd > switch {
+  background-color: @bg2;
+  border-radius: 3px;
+  border: none;
+  min-height: 16px;
+}
+
+.widget-dnd > switch:checked {
+  background-color: @fg;
+}
+
+.widget-dnd > switch slider {
+  background-color: @bg;
+  border-radius: 2px;
+  margin: 2px;
+}
+
+.widget-buttons-grid > flowbox > flowboxchild > button {
+  font-size: 14px;
+  min-width: 40px;
+  padding: 4px;
+}
+
+.widget-mpris {
+  padding: 0;
+}
+
+.widget-mpris-player {
+  padding: 8px;
+  margin: 0;
+}
+
+.widget-mpris-album-art {
+  border-radius: 3px;
+}
+
+.widget-mpris-title {
+  font-size: 12px;
+}
+
+.widget-mpris-subtitle {
+  font-size: 11px;
+  font-weight: normal;
+  color: alpha(@fg, 0.75);
+}
+
+.notification-group-headers {
+  color: alpha(@fg, 0.75);
+  margin: 0 4px;
+}
+
+.blank-window {
+  background: transparent;
+}

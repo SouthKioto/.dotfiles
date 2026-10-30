@@ -1,0 +1,229 @@
+/**
+ * @name Matugen
+ * @description Kolory z tapety (generowane przez matugen — nie edytuj ręcznie)
+ * @author kioto
+ * @version 1.0.0
+ */
+:root, .theme-dark, .visual-refresh.theme-dark {
+  --brand-500: #ffb4aa;
+  --brand-560: #ffb4aa;
+  --brand-experiment: #ffb4aa;
+  --text-brand: #ffb4aa;
+  --text-link: #ffb4aa;
+  --text-normal: #f1dedc;
+  --text-default: #f1dedc;
+  --text-muted: #a08c8a;
+  --header-primary: #f1dedc;
+  --header-secondary: #d8c2bf;
+  --interactive-normal: #d8c2bf;
+  --interactive-hover: #f1dedc;
+  --interactive-active: #ffb4aa;
+  --channels-default: #d8c2bf;
+  --background-primary: #1a1110;
+  --background-secondary: #231918;
+  --background-secondary-alt: #271d1c;
+  --background-tertiary: #140c0b;
+  --background-floating: #322826;
+  --background-base-lowest: #140c0b;
+  --background-base-lower: #231918;
+  --background-base-low: #271d1c;
+  --background-surface-high: #322826;
+  --background-surface-higher: #3d3231;
+  --background-modifier-hover: #322826;
+  --background-modifier-selected: #3d3231;
+  --background-modifier-active: #3d3231;
+  --channeltextarea-background: #271d1c;
+  --chat-background: #1a1110;
+  --bg-overlay-chat: #1a1110;
+  --bg-base-primary: #1a1110;
+  --bg-base-secondary: #231918;
+  --bg-base-tertiary: #140c0b;
+  --border-subtle: #534341;
+  --scrollbar-thin-thumb: #534341;
+  --scrollbar-auto-thumb: #534341;
+  --scrollbar-auto-track: transparent;
+}
+
+/* ── Terminal / waybar look ─────────────────────────────── */
+:root {
+  --term-bg: #1a1110;
+  --term-bg-deep: #140c0b;
+  --term-fg: #f1dedc;
+  --term-dim: #a08c8a;
+  --term-line: #534341;
+  --term-accent: #ffb4aa;
+  --term-on-accent: #561e19;
+  --term-green: #e0c38c;
+  --term-red: #ffb4ab;
+
+  /* font jak waybar/kitty */
+  --font-primary: "JetBrainsMono Nerd Font Propo", "JetBrainsMono Nerd Font", monospace;
+  --font-display: var(--font-primary);
+  --font-headline: var(--font-primary);
+  --font-code: "JetBrainsMono Nerd Font Mono", "FiraCode Nerd Font Mono", monospace;
+
+  /* ostre rogi (waybar: 3px) */
+  --radius-xs: 2px;
+  --radius-sm: 3px;
+  --radius-md: 3px;
+  --radius-lg: 3px;
+  --radius-xl: 3px;
+  --radius-xxl: 3px;
+  --radius-round: 3px;
+
+  --term-border: 1px solid rgba(255, 255, 255, 0.1);
+  --term-border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  --term-shadow: 0 1px 2px rgba(0, 0, 0, 1);
+}
+
+* {
+  font-family: var(--font-primary) !important;
+  letter-spacing: 0 !important;
+}
+code, pre, [class*="codeContainer"], [class*="markup"] code {
+  font-family: var(--font-code) !important;
+}
+
+/* ── Pasek tytułu = waybar ── */
+[class*="titleBar"], [class*="base_"] > [class*="bar_"] {
+  background: var(--term-bg) !important;
+  border-bottom: var(--term-border-bottom);
+  box-shadow: var(--term-shadow);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* ── Panele jako „moduły” waybara ── */
+nav[class*="guilds"],
+[class*="sidebar_"] > [class*="sidebarList"],
+[class*="sidebarList_"],
+main[class*="chatContent"],
+[class*="membersWrap"],
+[class*="panels_"] {
+  background: var(--term-bg) !important;
+  border: var(--term-border) !important;
+  border-bottom: var(--term-border-bottom) !important;
+  border-radius: 3px !important;
+  box-shadow: var(--term-shadow);
+}
+nav[class*="guilds"] { margin: 2px 0 2px 2px; }
+[class*="sidebarList_"] { margin: 2px 0 2px 2px; }
+main[class*="chatContent"] { margin: 2px; }
+[class*="membersWrap"] { margin: 2px 2px 2px 0; }
+[class*="panels_"] { margin: 0 2px 2px; }
+
+/* serwery: kwadraty zamiast kółek */
+nav[class*="guilds"] [class*="blobContainer"],
+nav[class*="guilds"] [class*="wrapper_"] img {
+  border-radius: 3px !important;
+}
+
+/* ── Kanały: aktywny = odwrócony jak workspace ── */
+[class*="containerDefault"] [class*="link_"] {
+  border-radius: 2px !important;
+}
+[class*="modeSelected"] [class*="link_"],
+[class*="modeSelected"] [class*="link_"]:hover {
+  background: var(--term-fg) !important;
+}
+[class*="modeSelected"] [class*="link_"] *,
+[class*="modeSelected"] [class*="name_"] {
+  color: var(--term-bg) !important;
+}
+[class*="containerDefault"] [class*="link_"]:hover {
+  background: var(--background-modifier-hover) !important;
+}
+
+
+/* ── Wiadomości ── */
+[class*="timestamp_"] time {
+  font-family: var(--font-code) !important;
+  color: var(--term-dim) !important;
+}
+[class*="timestamp_"] time::before { content: "["; }
+[class*="timestamp_"] time::after  { content: "]"; }
+
+h3[class*="header_"] [class*="username_"] {
+  font-weight: bold;
+}
+h3[class*="header_"] [class*="username_"]::after {
+  content: " ❯";
+  color: var(--term-dim);
+}
+
+/* wzmianki / reply highlight: lewa kreska zamiast tła */
+[class*="mentioned_"] {
+  background: transparent !important;
+}
+[class*="mentioned_"]::before {
+  background: var(--term-accent) !important;
+}
+
+/* ── Pole wiadomości = prompt ── */
+[class*="channelTextArea"] {
+  border: var(--term-border) !important;
+  border-bottom: var(--term-border-bottom) !important;
+  border-radius: 3px !important;
+}
+[class*="channelTextArea"] [class*="scrollableContainer"],
+[class*="channelTextArea"] > [class*="scrollableContainer"] {
+  background: var(--term-bg-deep) !important;
+  border-radius: 3px !important;
+}
+[class*="channelTextArea"] [class*="placeholder"]::before {
+  content: "❯ ";
+  color: var(--term-green);
+}
+
+/* ── Przyciski / popouty ── */
+button[class*="button_"] {
+  border-radius: 3px !important;
+}
+[class*="layerContainer"] [class*="menu_"],
+[class*="popout_"],
+[class*="tooltip_"] {
+  background: var(--term-bg) !important;
+  border: var(--term-border) !important;
+  border-radius: 3px !important;
+  box-shadow: var(--term-shadow) !important;
+}
+[class*="menu_"] [class*="item_"][class*="focused"] {
+  background: var(--term-fg) !important;
+  color: var(--term-bg) !important;
+}
+[class*="menu_"] [class*="item_"][class*="focused"] * {
+  color: var(--term-bg) !important;
+}
+[class*="colorDanger"][class*="focused"] {
+  background: var(--term-red) !important;
+}
+
+/* scrollbar cienki jak w terminalu */
+::-webkit-scrollbar { width: 4px !important; height: 4px !important; }
+::-webkit-scrollbar-thumb { background: var(--term-line) !important; border-radius: 0 !important; }
+
+/* ── Lista kanałów (klasy z CSS Discorda: link__/name__ kanałów, wrapperCommon__ kategorii) ── */
+[class*="containerDefault"] [class*="link__"] {
+  padding-inline: 4px !important;
+}
+[class*="containerDefault"] [class*="name__"],
+[class*="containerDefault"] [class*="name__"] > * {
+  font-size: 13px !important;
+  line-height: 20px !important;
+}
+
+/* kategorie: lowercase, wyśrodkowana strzałka */
+[class*="wrapperCommon"] [class*="mainContent"] {
+  align-items: center !important;
+}
+[class*="wrapperCommon"] [class*="name__"],
+[class*="wrapperCommon"] [class*="name__"] * {
+  font-size: 11px !important;
+  line-height: 16px !important;
+  text-transform: lowercase !important;
+  color: var(--term-dim) !important;
+}
+[class*="wrapperCommon"] [class*="icon__"] {
+  top: 0 !important;
+  align-self: center;
+}

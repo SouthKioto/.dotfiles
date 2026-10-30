@@ -1,41 +1,60 @@
 layout {
     default_tab_template {
-        pane size=1 borderless=true {
+        pane size=2 borderless=true {
             plugin location="file:/home/kioto/.config/zellij/plugins/zjstatus.wasm" {
-                format_left   "{mode} {session}"
-                format_center "{tabs}"
-                format_right  "{command_git_branch} {command_git_dirty} │ {datetime}"
+                format_left   "{mode} {tabs}"
+                format_center ""
+                format_right  "{pipe_zjstatus_hints}{command_git} {session} │ {datetime} "
+                format_space  "#[bg={{colors.surface.default.hex}}]"
+                format_hide_on_overlength "true"
+                format_precedence "lrc"
 
                 border_enabled  "true"
-                border_position "top"
+                border_position "bottom"
                 border_char     "─"
                 border_format   "#[fg={{colors.surface_variant.default.hex}}]{char}"
 
-                mode_normal  "#[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.primary.default.hex}},bold] NORMAL #[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]"
-                mode_insert  "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] INSERT #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
-                mode_locked  "#[fg={{colors.error.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.error.default.hex}},bold] LOCKED #[fg={{colors.error.default.hex}},bg={{colors.surface.default.hex}}]"
-                mode_resize  "#[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.secondary.default.hex}},bold] RESIZE #[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]"
-                mode_tab     "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] TAB #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
-                mode_pane    "#[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.primary.default.hex}},bold] PANE #[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]"
-                mode_move    "#[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.secondary.default.hex}},bold] MOVE #[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]"
-                mode_scroll  "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] SCROLL #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
+                hide_frame_for_single_pane "false"
+
+                mode_normal "#[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.primary.default.hex}},bold] NORMAL #[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_locked "#[fg={{colors.error.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.error.default.hex}},bold] LOCKED #[fg={{colors.error.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_resize "#[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.secondary.default.hex}},bold] RESIZE #[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_pane "#[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.primary.default.hex}},bold] PANE #[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_tab "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] TAB #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_move "#[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.secondary.default.hex}},bold] MOVE #[fg={{colors.secondary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_scroll "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] SCROLL #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_search "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] SEARCH #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_entersearch "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] SEARCH #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_renametab "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] RENAME #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_renamepane "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] RENAME #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
                 mode_session "#[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.tertiary.default.hex}},bold] SESSION #[fg={{colors.tertiary.default.hex}},bg={{colors.surface.default.hex}}]"
+                mode_tmux "#[fg={{colors.error.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.error.default.hex}},bold] TMUX #[fg={{colors.error.default.hex}},bg={{colors.surface.default.hex}}]"
                 mode_default_to_mode "normal"
 
-                session "#[fg={{colors.on_surface.default.hex}},bg={{colors.surface.default.hex}},bold] 󱂬 {name}"
+                session "#[fg={{colors.on_surface.default.hex}},bg={{colors.surface.default.hex}},bold]󱂬 {name}"
 
                 tab_separator " "
-                tab_normal   "#[fg={{colors.outline.default.hex}},bg={{colors.surface.default.hex}}] {index}:{name} "
-                tab_active   "#[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.primary.default.hex}},bold] {index}:{name} #[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]"
-                tab_fullscreen_indicator "󰊓 "
-                tab_floating_indicator   "󰉈 "
-                tab_sync_indicator       "󰓦 "
+                tab_normal   "#[fg={{colors.outline.default.hex}},bg={{colors.surface.default.hex}}] {index}:{name}{floating_indicator}{fullscreen_indicator}{sync_indicator} "
+                tab_active   "#[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]#[fg={{colors.surface.default.hex}},bg={{colors.primary.default.hex}},bold] {index}:{name}{floating_indicator}{fullscreen_indicator}{sync_indicator} #[fg={{colors.primary.default.hex}},bg={{colors.surface.default.hex}}]"
+                tab_fullscreen_indicator " 󰊓"
+                tab_floating_indicator   " 󰉈"
+                tab_sync_indicator       " 󰓦"
+                tab_display_count        "9"
+                tab_truncate_start_format "#[fg={{colors.outline.default.hex}}] < +{count} ..."
+                tab_truncate_end_format   "#[fg={{colors.outline.default.hex}}] ... +{count} >"
 
-                datetime        "#[fg={{colors.secondary.default.hex}},bold]󰥔 {format}"
-                datetime_format "%a %d %b %H:%M"
+                // gałąź git katalogu sesji (patrz scripts/git-status.sh)
+                command_git_command    "/home/kioto/.config/zellij/scripts/git-status.sh"
+                command_git_format     "#[fg={{colors.tertiary.default.hex}}]{stdout}"
+                command_git_interval   "5"
+                command_git_rendermode "static"
+
+                // podpowiedzi skrótów dla aktualnego trybu (plugin zjstatus-hints)
+                pipe_zjstatus_hints_format "#[fg={{colors.outline.default.hex}}]{output} "
+
+                datetime          "#[fg={{colors.secondary.default.hex}},bold]󰥔 {format}"
+                datetime_format   "%a %d %b %H:%M"
                 datetime_timezone "Europe/Warsaw"
-
-                hide_frame_for_single_pane "false"
             }
         }
         children

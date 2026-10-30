@@ -7,46 +7,8 @@
 --
 --
 
--- Parser colors.conf (matugen): linie typu `$primary = rgb(8bd0ef)`
-local COLORS_FILE = os.getenv("HOME") .. "/.config/hypr/colors.conf"
-
-local FALLBACK = {
-	primary = "8bd0ef",
-	secondary = "c6c2ea",
-	tertiary = "354a53",
-	outline_variant = "40484c",
-}
-
-local function load_colors(path)
-	local colors = {}
-	local f = io.open(path, "r")
-	if not f then
-		return colors
-	end
-	for line in f:lines() do
-		local name, value = line:match("^%s*%$([%w_]+)%s*=%s*(.-)%s*$")
-		if name then
-			local hex = value:match("rgba?%((%x+)%)") or value:match("^0x(%x+)$") or value:match("^#(%x+)$")
-			if hex then
-				if #hex == 8 then
-					hex = value:match("^0x") and hex:sub(3, 8) or hex:sub(1, 6)
-				end
-				if #hex == 6 then
-					colors[name] = hex
-				end
-			end
-		end
-	end
-	f:close()
-	return colors
-end
-
-local C = load_colors(COLORS_FILE)
-
--- kolor z matugena (albo fallback) + alfa w hex, np. "ee"
-local function rgba(name, alpha)
-	return "rgba(" .. (C[name] or FALLBACK[name] or "ffffff") .. (alpha or "ff") .. ")"
-end
+-- kolory z matugena: modules/colors.lua
+local rgba = require("modules.colors").rgba
 
 hl.config({
 	general = {
@@ -72,8 +34,8 @@ hl.config({
 
 		-- Opacity: wyższe wartości = mniej blendingu = mniej pracy GPU
 		active_opacity = 1, -- było 0.90, pełna nieprzezroczystość = brak kosztu blendingu
-		inactive_opacity = 0.94, -- było 0.60, podwyższone żeby ograniczyć obszar bluru
-		dim_inactive = true,
+		inactive_opacity = 1, -- było 0.94: każde nieaktywne okno wymuszało blur pod spodem (3 monitory na iGPU)
+		dim_inactive = true, -- przyciemnienie zostaje, jest prawie darmowe
 		dim_strength = 0.06,
 
 		shadow = {
@@ -86,8 +48,10 @@ hl.config({
 
 		blur = {
 			enabled = true,
-			size = 7, -- było 12
+			size = 6, -- było 12
 			passes = 2, -- było 3 ← największa zmiana; koszt rośnie jako passes²
+			popups = false, -- menu kontekstowe bez bluru
+			special = false, -- scratchpady bez bluru tła
 			vibrancy = 0.2,
 			vibrancy_darkness = 0.08,
 			noise = 0.015,
@@ -95,7 +59,7 @@ hl.config({
 			brightness = 0.85,
 			new_optimizations = true,
 			ignore_opacity = false,
-			xray = false,
+			xray = true, -- blur liczy tylko tapetę (cache) zamiast wszystkiego pod oknem — duża ulga dla iGPU na 2 ekranach
 		},
 	},
 })

@@ -5,6 +5,11 @@
 keybinds clear-defaults=true {
     locked {
         bind "Ctrl g" { SwitchToMode "normal"; }
+        // nawigacja między panelami działa też w trybie locked (autolock w nvim/yazi/btop)
+        bind "Alt h" "Alt left" { MoveFocusOrTab "left"; }
+        bind "Alt l" "Alt right" { MoveFocusOrTab "right"; }
+        bind "Alt j" "Alt down" { MoveFocus "down"; }
+        bind "Alt k" "Alt up" { MoveFocus "up"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }
@@ -130,6 +135,13 @@ keybinds clear-defaults=true {
             SwitchToMode "normal"
         }
         bind "Ctrl o" { SwitchToMode "normal"; }
+        bind "z" {
+            LaunchOrFocusPlugin "zsm" {
+                floating true
+                move_to_focused_tab true
+            }
+            SwitchToMode "normal"
+        }
         bind "p" {
             LaunchOrFocusPlugin "plugin-manager" {
                 floating true
@@ -165,7 +177,9 @@ keybinds clear-defaults=true {
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
         bind "Alt Shift p" { ToggleGroupMarking; }
-        bind "Ctrl q" { Quit; }
+        bind "Ctrl q" {
+            LaunchOrFocusPlugin "zj-quit" { floating true; }
+        }
     }
     shared_except "locked" "move" {
         bind "Ctrl h" { SwitchToMode "move"; }
@@ -265,59 +279,69 @@ keybinds clear-defaults=true {
     }
 
     shared_except "locked" {
-      bind "Ctrl space" {
-          LaunchOrFocusPlugin "file:/home/kioto/.config/zellij/plugins/room.wasm" {
-              floating true
-              ignore_case true
-              quick_jump true
-          }
-      }
-      bind "Ctrl y" {
-        LaunchOrFocusPlugin "file:/home/kioto/.config/zellij/plugins/zellij_forgot.wasm" {
-            "lock"                  "ctrl + g"
-            "unlock"                "ctrl + g"
-            "new pane"              "ctrl + p + n"
-            "change focus of pane"  "ctrl + p + arrow key"
-            "close pane"            "ctrl + p + x"
-            "rename pane"           "ctrl + p + c"
-            "toggle fullscreen"     "ctrl + p + f"
-            "toggle floating pane"  "ctrl + p + w"
-            "toggle embed pane"     "ctrl + p + e"
-            "choose right pane"     "ctrl + p + l"
-            "choose left pane"      "ctrl + p + r"
-            "choose upper pane"     "ctrl + p + k"
-            "choose lower pane"     "ctrl + p + j"
-            "new tab"               "ctrl + t + n"
-            "close tab"             "ctrl + t + x"
-            "change focus of tab"   "ctrl + t + arrow key"
-            "rename tab"            "ctrl + t + r"
-            "sync tab"              "ctrl + t + s"
-            "brake pane to new tab" "ctrl + t + b"
-            "brake pane left"       "ctrl + t + ["
-            "brake pane right"      "ctrl + t + ]"
-            "toggle tab"            "ctrl + t + tab"
-            "increase pane size"    "ctrl + n + +"
-            "decrease pane size"    "ctrl + n + -"
-            "increase pane top"     "ctrl + n + k"
-            "increase pane right"   "ctrl + n + l"
-            "increase pane bottom"  "ctrl + n + j"
-            "increase pane left"    "ctrl + n + h"
-            "decrease pane top"     "ctrl + n + K"
-            "decrease pane right"   "ctrl + n + L"
-            "decrease pane bottom"  "ctrl + n + J"
-            "decrease pane left"    "ctrl + n + H"
-            "move pane to top"      "ctrl + h + k"
-            "move pane to right"    "ctrl + h + l"
-            "move pane to bottom"   "ctrl + h + j"
-            "move pane to left"     "ctrl + h + h"
-            "search"                "ctrl + s + s"
-            "go into edit mode"     "ctrl + s + e"
-            "detach session"        "ctrl + o + w"
-            "open session manager"  "ctrl + o + w"
-            "quit zellij"           "ctrl + q"
-            floating true
+        // szybkie przełączanie zakładek (fuzzy)
+        bind "Ctrl space" {
+            LaunchOrFocusPlugin "file:/home/kioto/.config/zellij/plugins/room.wasm" {
+                floating true
+                ignore_case true
+                quick_jump true
+            }
         }
-    }
+        // ściągawka skrótów (czyta bindingi z configu)
+        bind "Ctrl y" {
+            LaunchOrFocusPlugin "file:/home/kioto/.config/zellij/plugins/zellij_forgot.wasm" {
+                "LOAD_ZELLIJ_BINDINGS" "true"
+                "sesje z zoxide (zsm)"     "Alt s  /  Ctrl o + z"
+                "yazi (pływający)"        "Alt e"
+                "btop (pływający)"        "Alt t"
+                "scratch terminal"        "Alt Enter"
+                "nawigacja w locked"      "Alt h/j/k/l"
+                floating true
+            }
+        }
+        // sesje: zoxide + istniejące + do wskrzeszenia
+        bind "Alt s" {
+            LaunchOrFocusPlugin "zsm" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
+        // narzędzia w pływających panelach (znikają po wyjściu)
+        bind "Alt e" {
+            Run "yazi" {
+                floating true
+                close_on_exit true
+                name "yazi"
+                width "90%"
+                height "85%"
+                x "5%"
+                y "8%"
+            }
+        }
+        bind "Alt t" {
+            Run "btop" {
+                floating true
+                close_on_exit true
+                name "btop"
+                width "90%"
+                height "85%"
+                x "5%"
+                y "8%"
+            }
+        }
+        bind "Alt Enter" { NewPane; }
+        bind "Alt w" { ToggleFloatingPanes; }
+        bind "Alt z" { ToggleFocusFullscreen; }
+        bind "Alt x" { CloseFocus; }
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
     }
 }
 
@@ -347,6 +371,27 @@ plugins {
         hide_frame_except_for_fullscreen "false"
     }
     forgot location="file:/home/kioto/.config/zellij/plugins/zellij_forgot.wasm"
+    zjstatus-hints location="file:/home/kioto/.config/zellij/plugins/zjstatus-hints.wasm" {
+        max_length 110
+        overflow_str "…"
+        pipe_name "zjstatus_hints"
+        hide_in_base_mode false
+    }
+    zsm location="file:/home/kioto/.config/zellij/plugins/zsm.wasm" {
+        session_separator "-"
+        show_resurrectable_sessions true
+        base_paths "/home/kioto/Projekty|/home/kioto"
+    }
+    zj-quit location="file:/home/kioto/.config/zellij/plugins/zj-quit.wasm" {
+        confirm_key "q"
+        cancel_key "Esc"
+    }
+    autolock location="file:/home/kioto/.config/zellij/plugins/zellij-autolock.wasm" {
+        is_enabled true
+        // blokuj tylko dla programów, które same używają Ctrl/Alt
+        lock_regex "^(n|nvim|vim|vi|hx|helix|yazi|btop|htop|fzf|lazygit|less|man|ssh|claude|python3?)$"
+        ignore_regex "^(zellij:.*|sh|bash|zsh|fish|starship|zoxide)$"
+    }
 }
 
 // Plugins to load in the background when a new session starts
@@ -355,10 +400,8 @@ plugins {
 load_plugins {
     zellij:link;
     "file:/home/kioto/.config/zellij/plugins/zjframes.wasm";
-    "file:/home/kioto/.config/zellij/plugins/zellij-autolock.wasm" {
-        triggers "nvim|vim|n"
-        watch_interval_ms "1000"
-    }
+    autolock
+    zjstatus-hints
 }
 
 web_client {
@@ -382,7 +425,7 @@ simplified_ui false
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "kanagawa"
+theme "matugen"
  
 // Theme to use when the host terminal reports a dark color palette.
 // Requires `theme_light` to also be set; otherwise `theme` is used.
@@ -430,7 +473,7 @@ default_layout "default"
 //   - true (default)
 //   - false
 // 
-// mouse_mode false
+mouse_mode true
  
 // Toggle having pane frames around the panes
 // Options:
@@ -454,7 +497,7 @@ pane_frames false
 //   - detach (Default)
 //   - quit
 // 
-// on_force_close "quit"
+on_force_close "detach"
  
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -463,7 +506,7 @@ pane_frames false
 // Valid values: positive integers
 // Default value: 10000
 // 
-// scroll_buffer_size 10000
+scroll_buffer_size 50000
  
 // Provide a command to execute when copying text. The text will be piped to
 // the stdin of the program to perform the copy. This can be used with
@@ -489,11 +532,11 @@ copy_command "wl-copy"                    // wayland
 // Enable automatic copying (and clearing) of selection when releasing mouse
 // Default: true
 // 
-// copy_on_select true
+copy_on_select true
  
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
-// scrollback_editor "/usr/bin/vim"
+scrollback_editor "/usr/bin/nvim"
  
 // A fixed name to always give the Zellij session.
 // Consider also setting `attach_to_session true,`
@@ -527,13 +570,13 @@ attach_to_session true
 //   - true
 //   - false (default)
 // 
-// serialize_pane_viewport false
+serialize_pane_viewport true
  
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
 // also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
 // 
-// scrollback_lines_to_serialize 10000
+scrollback_lines_to_serialize 2000
  
 // Enable or disable the rendering of styled and colored underlines (undercurl).
 // May need to be disabled for certain unsupported terminals
@@ -557,7 +600,7 @@ attach_to_session true
 // (Requires restart)
 // Default: true (if the host terminal supports it)
 // 
-// support_kitty_keyboard_protocol false
+support_kitty_keyboard_protocol true
 // Whether to make sure a local web server is running when a new Zellij session starts.
 // This web server will allow creating new sessions and attaching to existing ones that have
 // opted in to being shared in the browser.
@@ -613,12 +656,12 @@ attach_to_session true
 // Whether to show tips on startup
 // Default: true
 // 
-// show_startup_tips false
+show_startup_tips false
  
 // Whether to show release notes on first version run
 // Default: true
 // 
-// show_release_notes false
+show_release_notes false
  
 // Whether to enable mouse hover effects and pane grouping functionality
 // default is true

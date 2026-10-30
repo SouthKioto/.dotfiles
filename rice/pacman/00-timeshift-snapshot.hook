@@ -1,0 +1,14 @@
+# Snapshot systemu przed każdą zmianą pakietów (pacman / yay).
+# Skrypt: /usr/local/bin/pacman-snapshot — max 1 snapshot na godzinę, trzyma 5 ostatnich.
+[Trigger]
+Operation = Upgrade
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+Description = Snapshot systemu (Timeshift) przed zmianą pakietów…
+When = PreTransaction
+Exec = /usr/local/bin/pacman-snapshot
+Depends = timeshift

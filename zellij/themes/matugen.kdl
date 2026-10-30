@@ -1,0 +1,129 @@
+// Generowane przez matugen z ~/.config/zellij/themes/matugen.kdl.template — nie edytuj ręcznie
+themes {
+    matugen {
+        text_unselected {
+            base "#f1dedc"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#ffb4aa"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#ffb4ab"
+        }
+        text_selected {
+            base "#f1dedc"
+            background "#271d1c"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#ffb4aa"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#ffb4ab"
+        }
+        ribbon_unselected {
+            base "#f1dedc"
+            background "#271d1c"
+            emphasis_0 "#ffb4ab"
+            emphasis_1 "#ffb4aa"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#e0c38c"
+        }
+        ribbon_selected {
+            base "#1a1110"
+            background "#ffb4aa"
+            emphasis_0 "#ffb4ab"
+            emphasis_1 "#e0c38c"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#f1dedc"
+        }
+        table_title {
+            base "#ffb4aa"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#e7bdb7"
+            emphasis_2 "#f1dedc"
+            emphasis_3 "#ffb4ab"
+        }
+        table_cell_unselected {
+            base "#f1dedc"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#ffb4aa"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#ffb4ab"
+        }
+        table_cell_selected {
+            base "#ffdad5"
+            background "#73342d"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#ffb4aa"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#ffb4ab"
+        }
+        list_unselected {
+            base "#f1dedc"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#ffb4aa"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#ffb4ab"
+        }
+        list_selected {
+            base "#ffdad5"
+            background "#73342d"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#ffb4aa"
+            emphasis_2 "#e7bdb7"
+            emphasis_3 "#ffb4ab"
+        }
+        frame_unselected {
+            base "#534341"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#e7bdb7"
+            emphasis_2 "#ffb4aa"
+            emphasis_3 "#a08c8a"
+        }
+        frame_selected {
+            base "#ffb4aa"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#e7bdb7"
+            emphasis_2 "#f1dedc"
+            emphasis_3 "#a08c8a"
+        }
+        frame_highlight {
+            base "#e0c38c"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#e0c38c"
+            emphasis_2 "#e0c38c"
+            emphasis_3 "#e0c38c"
+        }
+        exit_code_success {
+            base "#ffb4aa"
+            background "#1a1110"
+            emphasis_0 "#e7bdb7"
+            emphasis_1 "#1a1110"
+            emphasis_2 "#e0c38c"
+            emphasis_3 "#ffb4aa"
+        }
+        exit_code_error {
+            base "#ffb4ab"
+            background "#1a1110"
+            emphasis_0 "#e0c38c"
+            emphasis_1 "#1a1110"
+            emphasis_2 "#1a1110"
+            emphasis_3 "#1a1110"
+        }
+        multiplayer_user_colors {
+            player_1 "#ffb4aa"
+            player_2 "#e0c38c"
+            player_3 "#e7bdb7"
+            player_4 "#ffb4ab"
+            player_5 "#a08c8a"
+            player_6 "#ffb4aa"
+            player_7 "#e0c38c"
+            player_8 "#e7bdb7"
+            player_9 "#ffb4ab"
+            player_10 "#a08c8a"
+        }
+    }
+}

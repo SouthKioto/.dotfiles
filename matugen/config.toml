@@ -1,16 +1,23 @@
 [config]
 reload_apps = true
 set_wallpaper = false
-reload_apps_list = ["ghostty"]
+reload_apps_list = ["kitty"]
+
+
+# dodatkowe kolory (zharmonizowane z tapetą) — dla składni w nvim
+[config.custom_colors]
+red = "#bf616a"
+orange = "#d08770"
+yellow = "#ebcb8b"
+green = "#a3be8c"
+cyan = "#88c0d0"
+blue = "#5e81ac"
+magenta = "#b48ead"
 
 [templates.waybar]
 input_path = "~/.config/waybar/style.css.template"
 output_path = "~/.config/waybar/colors/colors.css"
 post_hook = "pkill -SIGUSR2 waybar"
-
-[templates.ghostty]
-input_path = "~/.config/ghostty/colors.template"
-output_path = "~/.config/ghostty/colors.conf"
 
 [templates.kitty]
 input_path = "~/.config/kitty/colors.template"
@@ -43,3 +50,73 @@ output_path = "~/.config/rofi/colors/colors.rasi"
 [templates.zellij]
 input_path = "~/.config/zellij/layouts/default.kdl.template"
 output_path = "~/.config/zellij/layouts/default.kdl"
+
+[templates.zellij_theme]
+input_path = "~/.config/zellij/themes/matugen.kdl.template"
+output_path = "~/.config/zellij/themes/matugen.kdl"
+
+# ── cały system w kolorach tapety ─────────────────────────────
+
+[templates.gtk3]
+input_path = "~/.config/matugen/templates/gtk.css"
+output_path = "~/.config/gtk-3.0/gtk.css"
+
+[templates.gtk4]
+input_path = "~/.config/matugen/templates/gtk.css"
+output_path = "~/.config/gtk-4.0/gtk.css"
+
+[templates.qt5ct]
+input_path = "~/.config/matugen/templates/qtct.conf"
+output_path = "~/.config/qt5ct/colors/matugen.conf"
+
+[templates.qt6ct]
+input_path = "~/.config/matugen/templates/qtct.conf"
+output_path = "~/.config/qt6ct/colors/matugen.conf"
+
+[templates.btop]
+input_path = "~/.config/matugen/templates/btop.theme"
+output_path = "~/.config/btop/themes/matugen.theme"
+post_hook = "pkill -SIGUSR2 -x btop || true"
+
+[templates.cava]
+input_path = "~/.config/matugen/templates/cava"
+output_path = "~/.config/cava/themes/matugen"
+post_hook = "pkill -USR1 -x cava || true"
+
+[templates.swayosd]
+input_path = "~/.config/matugen/templates/swayosd.css"
+output_path = "~/.config/swayosd/style.css"
+
+[templates.zathura]
+input_path = "~/.config/matugen/templates/zathurarc"
+output_path = "~/.config/zathura/zathurarc"
+
+[templates.yazi]
+input_path = "~/.config/matugen/templates/yazi-theme.toml"
+output_path = "~/.config/yazi/theme.toml"
+
+[templates.lazygit]
+input_path = "~/.config/matugen/templates/lazygit.yml"
+output_path = "~/.config/lazygit/theme.yml"
+
+[templates.vesktop]
+input_path = "~/.config/matugen/templates/vesktop.css"
+output_path = "~/.config/vesktop/themes/matugen.theme.css"
+
+[templates.spotify_player]
+input_path = "~/.config/matugen/templates/spotify-player.toml"
+output_path = "~/.config/spotify-player/theme.toml"
+
+[templates.quickshell]
+input_path = "~/.config/matugen/templates/quickshell-colors.qml"
+output_path = "~/.config/quickshell/widgets/Colors.qml"
+
+[templates.sddm]
+input_path = "~/.config/matugen/templates/sddm-theme.conf.user"
+output_path = "~/.config/rice/sddm/rice/dynamic/theme.conf.user"
+
+[templates.nvim]
+input_path = "~/.config/matugen/templates/nvim-palette.lua"
+output_path = "~/.config/nvim/lua/matugen/palette.lua"
+# przeładuj kolory we wszystkich otwartych nvimach
+post_hook = 'for s in "$XDG_RUNTIME_DIR"/nvim.*.0; do [ -S "$s" ] && nvim --server "$s" --remote-expr "execute(\"MatugenReload\")" >/dev/null 2>&1; done; true'

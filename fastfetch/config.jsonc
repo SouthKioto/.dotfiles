@@ -1,135 +1,111 @@
-//  kioto@batlomiej — arch + hyprland // bleach style v4
-// Wymaga Nerd Font. Ikony zapisane jako \uXXXX (odporne na kopiowanie).
+//  kioto@batlomiej — arch + hyprland // 枯山水 karesansui (ogród zen)
+// Logo = kwadratowy kadr aktualnej tapety (~/.cache/fastfetch/logo.png,
+// robi go hypr/scripts/cache-wallpaper.sh). Kolory to paleta ANSI kitty,
+// więc idą za matugenem: 2 = akcent, 3 = mech, 4 = piasek, 8 = kamień.
+// Wymaga Nerd Font + fontu z japońskimi znakami (Noto Sans CJK JP).
 {
-  /////===== LOGO =====/////
   "logo": {
-    "type": "auto",
-    "source": "~/.config/fastfetch/images/SouthKioto.jpeg",
-    "height": 15,
+    "type": "kitty-direct",
+    "source": "~/.cache/fastfetch/logo.png",
+    "width": 34,
+    "height": 16,
     "padding": {
       "top": 1,
       "left": 2,
-      "right": 2
+      "right": 3
     }
   },
   "display": {
-    "separator": " ",
-    "key": {
-      "width": 14
-    },
+    "separator": "  ",
     "color": {
-      "keys": "38;5;208",
-      "title": "38;5;208",
-      "output": "38;5;255"
+      "keys": "33",
+      "title": "32",
+      "output": "37"
     }
   },
-  /////===== MODULES =====/////
   "modules": [
-    /////===== SEIREITEI (system, pomarańcz) =====/////
-    {
-      "type": "custom",
-      "key": "╔═ SEIREITEI ═════",
-      "keyColor": "38;5;208"
-    },
+    "break",
     {
       "type": "title",
-      "key": "║ \uf007 User",
-      "format": "{host-name}",
-      "keyColor": "38;5;208"
+      "format": "{#1;32}{user-name}{#0;90} 〆 {#1;33}{host-name}"
     },
     {
       "type": "custom",
-      "key": "╠══◈═══════◈══",
-      "keyColor": "38;5;208"
+      "format": "{#90}─────────────── {#34}枯山水{#90} ──"
+    },
+    /////===== 庭 niwa — ogród (system) =====/////
+    {
+      "type": "custom",
+      "format": "{#32}庭 {#90}niwa"
     },
     {
       "type": "os",
-      "key": "║ \uf17c OS",
-      "keyColor": "38;5;208"
+      "key": "{#34}道{#90} os    ",
+      "format": "{pretty-name}"
     },
     {
       "type": "kernel",
-      "key": "║ \uf013 Kernel",
-      "keyColor": "38;5;208"
+      "key": "{#34}核{#90} kernel"
     },
     {
       "type": "wm",
-      "key": "║ \uf2d0 WM",
-      "keyColor": "38;5;208"
+      "key": "{#34}窓{#90} wm    "
     },
     {
       "type": "packages",
-      "key": "║ \uf487 Packages",
-      "keyColor": "38;5;208",
-      "disabled": [
-        "apk"
-      ],
-      "combined": false
+      "key": "{#34}包{#90} pkgs  ",
+      "combined": true
     },
+    {
+      "type": "shell",
+      "key": "{#34}殻{#90} shell "
+    },
+    {
+      "type": "terminal",
+      "key": "{#34}端{#90} term  "
+    },
+    "break",
+    /////===== 石 ishi — kamienie (sprzęt) =====/////
     {
       "type": "custom",
-      "key": "╚═════════════════",
-      "keyColor": "38;5;208"
-    },
-    /////===== KATANA (separator) =====/////
-    {
-      "type": "custom",
-      "key": "══╪━━━━━━━━━━━▶",
-      "keyColor": "38;5;255"
-    },
-    /////===== HUECO MUNDO (hardware, czerwień) =====/////
-    {
-      "type": "custom",
-      "key": "▛▀ HUECO MUNDO ▀▀▀",
-      "keyColor": "38;5;196"
-    },
-    {
-      "type": "memory",
-      "key": "▌ \uf2db Memory",
-      "keyColor": "38;5;196"
-    },
-    {
-      "type": "disk",
-      "key": "▌ \uf0a0 Disk",
-      "keyColor": "38;5;196"
-    },
-    {
-      "type": "swap",
-      "key": "▌ \uf0ec Swap",
-      "keyColor": "38;5;196"
+      "format": "{#32}石 {#90}ishi"
     },
     {
       "type": "cpu",
-      "key": "▌ \uf2db CPU",
-      "format": "{name} ({cores-logical})",
-      "keyColor": "38;5;196"
+      "key": "{#33}脳{#90} cpu   ",
+      "format": "{name} ({cores-logical})"
     },
     {
       "type": "gpu",
-      "key": "▌ \uf108 GPU",
-      "format": "{vendor} {name} ({type})",
-      "keyColor": "38;5;196"
+      "key": "{#33}絵{#90} gpu   ",
+      "format": "{name}"
     },
     {
-      "type": "host",
-      "key": "▌ \uf109 Chassis",
-      "keyColor": "38;5;196"
+      "type": "memory",
+      "key": "{#33}憶{#90} ram   "
+    },
+    {
+      "type": "disk",
+      "key": "{#33}蔵{#90} disk  ",
+      "folders": "/"
     },
     {
       "type": "battery",
-      "key": "▌ \uf240 Battery",
-      "keyColor": "38;5;196"
+      "key": "{#33}電{#90} bat   "
+    },
+    {
+      "type": "uptime",
+      "key": "{#33}時{#90} up    "
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "circle",
+      "paddingLeft": 0
     },
     {
       "type": "custom",
-      "key": "▙▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄",
-      "keyColor": "38;5;196"
-    },
-    /////===== PASEK KOLORÓW =====/////
-    {
-      "type": "custom",
-      "key": " ",
-      "format": "{#38;5;208}██████{#38;5;255}██████{#38;5;196}██████{#38;5;232}██████"
+      "format": "{#3;90}静寂の庭 — cisza, kamień, piasek"
     }
   ]
 }

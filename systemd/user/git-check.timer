@@ -1,0 +1,9 @@
+[Unit]
+Description=Codziennie 20:00 sprawdź, czy wszystko jest na GitHubie
+
+[Timer]
+OnCalendar=*-*-* 20:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

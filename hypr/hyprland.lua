@@ -7,15 +7,14 @@ require("modules.layout")
 require("modules.misc")
 require("modules.input")
 require("modules.windowrules")
+require("modules.scratchpads")
+require("modules.plugins")
+require("modules.powersave") -- na końcu: nadpisuje animacje/blur w trybie oszczędzania
 
 hl.config({
 	xwayland = {
 		force_zero_scaling = true,
 	},
-})
-
-hl.config({
-	vfr = { true },
 })
 
 -----------------------

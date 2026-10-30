@@ -6,7 +6,6 @@ ROFI_DIR="$HOME/.config/rofi"
 ROFI_THEME="wallpaper-picker"
 THUMB_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/wallpaper-thumbs"
 CACHE_SCRIPT="$HOME/.config/hypr/scripts/cache-wallpaper.sh"
-WAYBAR_LOG="${XDG_CACHE_HOME:-$HOME/.cache}/waybar.log"
 
 mkdir -p "$THUMB_DIR"
 
@@ -63,18 +62,7 @@ if [[ ! -f "$full_path" ]]; then
 fi
 
 restart_waybar() {
-    pkill -x waybar 2>/dev/null || true
-
-    # poczekaj max 2 s aż stary proces zniknie
-    for _ in {1..20}; do
-        pgrep -x waybar >/dev/null || break
-        sleep 0.1
-    done
-
-    # jeśli nadal żyje, zabij na twardo
-    pkill -9 -x waybar 2>/dev/null || true
-
-    setsid -f waybar >"$WAYBAR_LOG" 2>&1 < /dev/null
+    "$HOME/.config/hypr/scripts/waybar-restart.sh"
 }
 
 apply_wallpaper() {
@@ -95,9 +83,15 @@ apply_wallpaper() {
         notify-send "Matugen" "Nie udało się wygenerować kolorów"
     fi
 
-    if [[ -x "$HOME/.config/hypr/scripts/apply-colors.sh" ]]; then
-        "$HOME/.config/hypr/scripts/apply-colors.sh" || true
+    # SDDM: tapeta + kolory na ekran logowania (katalog należy do usera, patrz rice/install.sh)
+    local sddm_dir="/usr/share/sddm/themes/rice/dynamic"
+    if [[ -w "$sddm_dir" ]]; then
+        cp "$wall" "$sddm_dir/background.png"
+        cp "$HOME/.config/rice/sddm/rice/dynamic/theme.conf.user" "$sddm_dir/" 2>/dev/null || true
     fi
+
+    # decorations.lua czyta colors.conf sam, wystarczy przeładować Hyprlanda
+    hyprctl reload >/dev/null || true
 
     restart_waybar
     swaync-client --reload-config 2>/dev/null || true

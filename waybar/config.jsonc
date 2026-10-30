@@ -9,18 +9,15 @@
   "margin-bottom": 0,
   "modules-left": [
     "clock",
+    "custom/weather",
     "custom/separator",
-    "custom/idle-indicator",
-    "custom/notification-silencing-indicator",
-    "custom/voxtype",
-    "custom/screenrecording-indicator",
-    "custom/update",
-    "custom/updatespacman",
     "tray",
     "custom/separator",
-    "hyprland/workspaces"
+    "group/workspaces"
   ],
   "modules-center": [
+    "custom/focus",
+    "custom/recording",
     "custom/mpris"
   ],
   "modules-right": [
@@ -29,79 +26,129 @@
   "group/right": {
     "orientation": "inherit",
     "modules": [
+      "custom/updates",
+      "custom/nightlight",
       "backlight",
       "bluetooth",
       "network",
       "pulseaudio",
+      "custom/power",
       "battery",
       "memory",
       "cpu"
     ]
   },
-  "hyprland/workspaces": {
-    "on-click": "activate",
+  // workspace'y: numer + jedna ikona na aplikację, tooltip z listą okien
+  // (dane z ~/.config/hypr/scripts/workspaces.py, który odpala niewidoczny custom/ws-daemon)
+  "group/workspaces": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/ws-daemon",
+      "custom/ws#1",
+      "custom/ws#2",
+      "custom/ws#3",
+      "custom/ws#4",
+      "custom/ws#5",
+      "custom/ws#6",
+      "custom/ws#7",
+      "custom/ws#8",
+      "custom/ws#9",
+      "custom/ws#10"
+    ]
+  },
+  "custom/ws-daemon": {
+    "exec": "python3 -u ~/.config/hypr/scripts/workspaces.py",
+    "restart-interval": 2,
+    "tooltip": false
+  },
+  "custom/ws#1": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/1.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
     "cursor": true,
-    "format": "{icon}"
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 1 })'"
+  },
+  "custom/ws#2": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/2.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 2 })'"
+  },
+  "custom/ws#3": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/3.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 3 })'"
+  },
+  "custom/ws#4": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/4.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 4 })'"
+  },
+  "custom/ws#5": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/5.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 5 })'"
+  },
+  "custom/ws#6": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/6.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 6 })'"
+  },
+  "custom/ws#7": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/7.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 7 })'"
+  },
+  "custom/ws#8": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/8.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 8 })'"
+  },
+  "custom/ws#9": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/9.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 9 })'"
+  },
+  "custom/ws#10": {
+    "exec": "cat \"$XDG_RUNTIME_DIR/waybar-workspaces/$WAYBAR_OUTPUT_NAME/10.json\" 2>/dev/null",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 14,
+    "cursor": true,
+    "on-click": "hyprctl dispatch 'hl.dsp.focus({ workspace = 10 })'"
   },
   "custom/separator": {
     "format": "|",
     "tooltip": false
   },
-  "custom/windowpill": {
-    "format": "{}",
-    "exec": "~/.config/waybar/window_pill.py",
-    "return-type": "json",
-    "restart-interval": 1,
-    "align": 0,
-    "justify": "left"
-  },
-  "custom/update": {
-    "format": "",
-    "exec": "omarchy-update-available",
-    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
-    "tooltip-format": "Omarchy update available",
-    "signal": 7,
-    "interval": 21600
-  },
-  "custom/updatespacman": {
-    "format": "{}{icon}",
-    "return-type": "json",
-    "format-icons": {
-      "has-updates": " 󰏖",
-      "updated": ""
-    },
-    "exec-if": "which waybar-module-pacman-updates",
-    "exec": "waybar-module-pacman-updates --no-zero-output"
-  },
-  "custom/voxtype": {
-    "exec": "omarchy-voxtype-status",
-    "return-type": "json",
-    "format": "{icon}",
-    "format-icons": {
-      "idle": "",
-      "recording": "󰍬",
-      "transcribing": "󰔟"
-    },
-    "tooltip": true,
-    "on-click-right": "omarchy-voxtype-config",
-    "on-click": "omarchy-voxtype-model"
-  },
-  "custom/idle-indicator": {
-    "on-click": "omarchy-toggle-idle",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/idle.sh",
-    "signal": 9,
-    "return-type": "json"
-  },
-  "custom/notification-silencing-indicator": {
-    "on-click": "omarchy-toggle-notification-silencing",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/notification-silencing.sh",
-    "signal": 10,
-    "return-type": "json"
-  },
   "cpu": {
-    "interval": 2,
+    "interval": 5,
     "format": "<span size='10pt'></span> {icon} {usage}%",
-    "on-click": "btop",
+    "on-click": "kitty -e btop",
     "format-icons": [
       "<span size='8pt'>━</span>",
       "<span size='8pt'>■</span>",
@@ -117,9 +164,9 @@
     ]
   },
   "memory": {
-    "interval": 2,
+    "interval": 5,
     "format": "<span size='9pt'></span> {icon} {used:0.1f}G",
-    "on-click": "omarchy-launch-or-focus-tui btop",
+    "on-click": "kitty -e btop",
     "format-icons": [
       "<span size='8pt'>━</span>",
       "<span size='8pt'>■</span>",
@@ -147,8 +194,7 @@
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
         "today": "<span color='#ff6699'><b>{}</b></span>"
       }
-    },
-    "on-click-right": "omarchy-launch-floating-terminal-with-presentation omarchy-tz-select"
+    }
   },
   "network": {
     "format-icons": [
@@ -165,9 +211,9 @@
     "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
     "tooltip-format-disconnected": "Disconnected",
-    "interval": 3,
+    "interval": 5,
     "spacing": 1,
-    "on-click": "omarchy-launch-wifi"
+    "on-click": "kitty -e impala"
   },
   "battery": {
     "format": "{icon} {capacity}%",
@@ -205,9 +251,8 @@
     "format-full": "󰂅",
     "tooltip-format-discharging": "{timeTo}",
     "tooltip-format-charging": "{timeTo}",
-    "interval": 5,
-    "on-click": "omarchy-menu power",
-    "on-click-right": "notify-send -u low \"$(omarchy-battery-status)\"",
+    "interval": 30,
+    "on-click": "~/.config/hypr/scripts/power-menu.sh",
     "states": {
       "warning": 20,
       "critical": 10
@@ -219,12 +264,12 @@
     "format-disabled": "󰂲 {status}",
     "format-connected": "󰂱 {num_connections}",
     "tooltip-format": "Devices connected: {num_connections}",
-    "on-click": "omarchy-launch-bluetooth"
+    "on-click": "kitty -e bluetui"
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
-    "on-click": "omarchy-launch-audio",
-    "on-click-right": "pamixer -t",
+    "on-click": "pavucontrol-qt",
+    "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
     "format-muted": "",
@@ -255,17 +300,53 @@
     "icon-size": 12,
     "spacing": 5
   },
+  "custom/power": {
+    "exec": "~/.config/hypr/scripts/power-profile.sh status",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 9,
+    "on-click": "~/.config/hypr/scripts/power-profile.sh cycle",
+    "on-click-right": "~/.config/hypr/scripts/power-profile.sh menu"
+  },
+  "custom/nightlight": {
+    "exec": "~/.config/hypr/scripts/nightlight.sh status",
+    "return-type": "json",
+    "interval": 300,
+    "signal": 11,
+    "on-click": "~/.config/hypr/scripts/nightlight.sh toggle"
+  },
+  "custom/weather": {
+    "exec": "~/.config/hypr/scripts/weather.sh",
+    "return-type": "json",
+    "interval": 60,
+    "on-click": "qs -c widgets ipc call widgets toggle"
+  },
+  "custom/updates": {
+    "exec": "~/.config/hypr/scripts/updates.sh status",
+    "return-type": "json",
+    "interval": 3600,
+    "signal": 13,
+    "on-click": "~/.config/hypr/scripts/updates.sh run"
+  },
+  "custom/focus": {
+    "exec": "~/.config/hypr/scripts/focus.sh status",
+    "return-type": "json",
+    "interval": 60,
+    "signal": 12,
+    "on-click": "~/.config/hypr/scripts/focus.sh toggle"
+  },
+  "custom/recording": {
+    "exec": "~/.config/hypr/scripts/record.sh status",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 10,
+    "on-click": "~/.config/hypr/scripts/record.sh stop"
+  },
   "custom/mpris": {
-    "exec": "python3 -u ~/.config/waybar/scrolling-mpris.py",
+    "exec": "python3 -u ~/.config/hypr/scripts/mpris.py",
     "format": "{text}",
     "return-type": "json",
     "on-click": "playerctl play-pause",
     "tooltip": false
-  },
-  "custom/screenrecording-indicator": {
-    "on-click": "omarchy-capture-screenrecording",
-    "exec": "$OMARCHY_PATH/default/waybar/indicators/screen-recording.sh",
-    "signal": 8,
-    "return-type": "json"
-  },
+  }
 }
